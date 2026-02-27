@@ -1,13 +1,19 @@
 # Near-inertial wave simulation with and without wave-averaged equations
 #
-# This script sets up two paired LES simulations following Wagner et al. (2021):
+# Three paired LES simulations based on the IVP in Section 4 of
+# Wagner et al. (2021):
 #
-#   1. "growing_waves": Stokes drift grows in time, driving near-inertial waves
-#      via the Craik-Leibovich vortex force and ∂t_uˢ. No surface stress.
+#   1. "wave_averaged": Steady Stokes drift with Craik-Leibovich equations.
+#      Initial Lagrangian-mean velocity u_L = 1.1 uˢ(z).
+#      Eulerian velocity is u_E = u_L - uˢ = 0.1 uˢ(z).
 #
-#   2. "effective_stress": No Stokes drift. Instead, an equivalent time-dependent
-#      surface stress τ(t) is applied that imparts the same total momentum as
-#      the growing wave field.
+#   2. "no_waves_lagrangian": No Stokes drift.
+#      Initial velocity u = 1.1 uˢ(z), matching the Lagrangian-mean
+#      velocity of the wave-averaged case.
+#
+#   3. "no_waves_eulerian": No Stokes drift.
+#      Initial velocity u = 0.1 uˢ(z), matching the Eulerian
+#      velocity of the wave-averaged case.
 #
 # Reference:
 #   Wagner, G. L., Chini, G. P., Ramadhan, A., Gallet, B., & Ferrari, R. (2021).
@@ -15,101 +21,67 @@
 #   Journal of Physical Oceanography, 51(5), 1337-1351.
 
 using Oceananigans
-using Oceananigans.Units: minute, minutes, hours, hour
+using Oceananigans.Units: minute, minutes, hours
 using Printf
 
-# ============================
 # Physical parameters
-# ============================
-
-const f = 1e-4       # Coriolis parameter [s⁻¹]
-const N² = 1e-6      # Initial buoyancy gradient [s⁻²]
-const g = Oceananigans.defaults.gravitational_acceleration
+f = 1e-4       # Coriolis parameter [s⁻¹]
+N² = 1.936e-5  # Initial buoyancy gradient [s⁻²]
+g = Oceananigans.defaults.gravitational_acceleration
 
 # Wave parameters (monochromatic deep-water surface gravity waves)
-const wave_amplitude = 2.0    # m
-const wave_wavelength = 100.0 # m
-const wavenumber = 2π / wave_wavelength           # m⁻¹
-const frequency = sqrt(g * wavenumber)             # s⁻¹
-const vertical_scale = wave_wavelength / (4π)      # 1 / (2k) decay scale
-const Uˢ_surface = wave_amplitude^2 * wavenumber * frequency  # surface Stokes drift [m s⁻¹]
+amplitude = 0.8    # m
+wavelength = 60.0  # m
+wavenumber = 2π / wavelength            # m⁻¹
+frequency = sqrt(g * wavenumber)        # s⁻¹
+vertical_scale = wavelength / (4π)      # 1 / (2k) decay scale
+Uˢ_surface = amplitude^2 * wavenumber * frequency  # surface Stokes drift [m s⁻¹]
 
-# Growth time scale for swell
-const T_growth = 4hours  # s
+# Weak destabilizing surface buoyancy flux
+Qᵇ = 2.307e-8  # m² s⁻³
 
-# Weak surface buoyancy flux to help spin up turbulence
-const Qᵇ = 5e-10  # m² s⁻³ (destabilizing, positive = cooling in Oceananigans convention)
+# Surface kinematic momentum flux
+τx = -3.72e-5  # m² s⁻²
 
 # Domain
-const Lx = 128.0 # m
-const Ly = 128.0 # m
-const Lz = 64.0  # m
+Lx = 128.0 # m
+Ly = 128.0 # m
+Lz = 64.0  # m
 
-# ============================
 # Resolution (low for CPU testing; increase for production)
-# ============================
-const Nx = 32
-const Ny = 32
-const Nz = 32
+Nx = 32
+Ny = 32
+Nz = 32
 
-# ============================
-# Stokes drift functions for the growing wave case
-# ============================
-#
-# Stokes drift profile:  uˢ(z, t) = Uˢ_surface * exp(2k * z) * ramp(t)
-# where ramp(t) = 1 - exp(-t² / (2T²))
+# Stokes drift profile: uˢ(z) = Uˢ_surface * exp(z / vertical_scale)
+uˢ(z) = Uˢ_surface * exp(z / vertical_scale)
 
-@inline ramp(t)    = 1 - exp(-t^2 / (2 * T_growth^2))
-@inline ∂t_ramp(t) = t / T_growth^2 * exp(-t^2 / (2 * T_growth^2))
+# Vertical derivative of steady Stokes drift (for Craik-Leibovich vortex force)
+stokes_drift_parameters = (; Uˢ = Uˢ_surface, h = vertical_scale)
+@inline ∂z_uˢ(z, t, p) = p.Uˢ / p.h * exp(z / p.h)
 
-# Vertical derivative of Stokes drift (needed for Craik-Leibovich vortex force)
-@inline ∂z_uˢ_growing(z, t) = 2 * wavenumber * Uˢ_surface * exp(2 * wavenumber * z) * ramp(t)
+# Sponge layer at the bottom: relaxes velocities and buoyancy near z = -Lz
+sponge_width = 4.0    # m
+sponge_timescale = 60.0 # s
+sponge_params = (; Lz, δ = sponge_width, τ = sponge_timescale, N² = N²)
 
-# Time derivative of Stokes drift (needed for Lagrangian-mean momentum equation)
-@inline ∂t_uˢ_growing(z, t) = Uˢ_surface * exp(2 * wavenumber * z) * ∂t_ramp(t)
+@inline μ(z, p) = exp(-(z + p.Lz)^2 / (2 * p.δ^2)) / p.τ
 
-# ============================
-# Effective surface stress for the no-wave case
-# ============================
-#
-# The vertically-integrated Stokes drift tendency equals the effective stress:
-#   τ_eff(t) = ∫ ∂t_uˢ dz = Uˢ_surface / (2k) * ∂t_ramp(t)
-#
-# In Oceananigans, a negative surface flux drives a positive velocity.
+@inline sponge_u(x, y, z, t, u, p) = -μ(z, p) * u
+@inline sponge_v(x, y, z, t, v, p) = -μ(z, p) * v
+@inline sponge_w(x, y, z, t, w, p) = -μ(z, p) * w
+@inline sponge_b(x, y, z, t, b, p) = -μ(z, p) * (b - p.N² * z)
 
-@inline effective_stress(x, y, t) = -Uˢ_surface / (2 * wavenumber) * ∂t_ramp(t)
-
-# ============================
-# Sponge layer at the bottom
-# ============================
-# Relaxes velocities and buoyancy to their background state near z = -Lz
-
-const sponge_width = 4.0   # m
-const sponge_timescale = 60.0 # s
-
-@inline μ(z) = exp(-(z + Lz)^2 / (2 * sponge_width^2)) / sponge_timescale
-
-@inline sponge_u(x, y, z, t, u) = -μ(z) * u
-@inline sponge_v(x, y, z, t, v) = -μ(z) * v
-@inline sponge_w(x, y, z, t, w) = -μ(z) * w
-@inline sponge_b(x, y, z, t, b) = -μ(z) * (b - N² * z)
-
-# ============================
 # Initial conditions
-# ============================
-# - Linear stratification: b(z) = N² z
-# - Noise to seed turbulence, concentrated near the surface
+noise_amplitude = 1e-2  # m s⁻¹
+initial_mixed_layer_depth = 33.0 # m
 
-const noise_amplitude = 1e-2  # Velocity noise amplitude [m s⁻¹]
+stratification(z) = z < -initial_mixed_layer_depth ? N² * z : N² * (-initial_mixed_layer_depth)
 
-uᵢ(x, y, z) = noise_amplitude * (2 * rand() - 1) * exp(z / 4)
-vᵢ(x, y, z) = noise_amplitude * (2 * rand() - 1) * exp(z / 4)
-wᵢ(x, y, z) = noise_amplitude * (2 * rand() - 1) * exp(z / 4)
-bᵢ(x, y, z) = N² * z + 1e-4 * N² * Lz * (2 * rand() - 1) * exp(z / 4)
-
-# ============================
-# Build and run a simulation
-# ============================
+noise(z) = noise_amplitude * (2 * rand() - 1) * exp(z / 4)
+vᵢ(x, y, z) = noise(z)
+wᵢ(x, y, z) = noise(z)
+bᵢ(x, y, z) = stratification(z) + 1e-1 * (2 * rand() - 1) * N² * Lz * exp(z / 4)
 
 function run_simulation(; case, stop_time = 2 * 2π / f)
 
@@ -121,35 +93,42 @@ function run_simulation(; case, stop_time = 2 * 2π / f)
     coriolis = FPlane(; f)
 
     # Forcing: sponge layer
-    u_forcing = Forcing(sponge_u; field_dependencies = :u)
-    v_forcing = Forcing(sponge_v; field_dependencies = :v)
-    w_forcing = Forcing(sponge_w; field_dependencies = :w)
-    b_forcing = Forcing(sponge_b; field_dependencies = :b)
+    u_forcing = Forcing(sponge_u; field_dependencies = :u, parameters = sponge_params)
+    v_forcing = Forcing(sponge_v; field_dependencies = :v, parameters = sponge_params)
+    w_forcing = Forcing(sponge_w; field_dependencies = :w, parameters = sponge_params)
+    b_forcing = Forcing(sponge_b; field_dependencies = :b, parameters = sponge_params)
 
     forcing = (u = u_forcing, v = v_forcing, w = w_forcing, b = b_forcing)
 
     # Case-dependent setup
-    if case == :growing_waves
-        stokes_drift = UniformStokesDrift(∂z_uˢ = ∂z_uˢ_growing,
-                                          ∂t_uˢ = ∂t_uˢ_growing)
-        u_bcs = FieldBoundaryConditions()
-    elseif case == :effective_stress
+    if case == :wave_averaged
+        stokes_drift = UniformStokesDrift(∂z_uˢ = ∂z_uˢ, parameters = stokes_drift_parameters)
+        # Lagrangian-mean velocity: u_L = 1.1 uˢ (so Eulerian u_E = 0.1 uˢ)
+        u_multiplier = 1.1
+    elseif case == :no_waves_lagrangian
         stokes_drift = nothing
-        u_bcs = FieldBoundaryConditions(top = FluxBoundaryCondition(effective_stress))
+        # Same velocity as the Lagrangian-mean in wave_averaged case
+        u_multiplier = 1.1
+    elseif case == :no_waves_eulerian
+        stokes_drift = nothing
+        # Same velocity as the Eulerian velocity in wave_averaged case
+        u_multiplier = 0.1
     else
-        error("Unknown case: $case. Use :growing_waves or :effective_stress.")
+        error("Unknown case: $case. Use :wave_averaged, :no_waves_lagrangian, or :no_waves_eulerian.")
     end
 
+    uᵢ(x, y, z) = u_multiplier * uˢ(z) + noise(z)
+
+    u_bcs = FieldBoundaryConditions(top = FluxBoundaryCondition(τx))
     b_bcs = FieldBoundaryConditions(top = FluxBoundaryCondition(Qᵇ),
                                     bottom = GradientBoundaryCondition(N²))
 
     boundary_conditions = (u = u_bcs, b = b_bcs)
 
     model = NonhydrostaticModel(grid; coriolis, forcing,
-                                advection = WENO(),
+                                advection = WENO(order=9),
                                 tracers = :b,
                                 buoyancy = BuoyancyTracer(),
-                                closure = AnisotropicMinimumDissipation(),
                                 stokes_drift,
                                 boundary_conditions)
 
@@ -209,12 +188,7 @@ function run_simulation(; case, stop_time = 2 * 2π / f)
     return simulation
 end
 
-# ============================
-# Run both cases
-# ============================
-#
-# Run for 2 inertial periods: T_inertial = 2π/f
-
+# Run for 2 inertial periods
 T_inertial = 2π / f
 stop_time = 2 * T_inertial
 
@@ -222,8 +196,10 @@ stop_time = 2 * T_inertial
 @info "Stop time: $(prettytime(stop_time))"
 @info "Grid: $Nx × $Ny × $Nz"
 @info "Domain: $Lx × $Ly × $Lz m"
+@info "Surface Stokes drift: $Uˢ_surface m/s"
 
-sim_waves = run_simulation(case = :growing_waves, stop_time = stop_time)
-sim_stress = run_simulation(case = :effective_stress, stop_time = stop_time)
+run_simulation(case = :wave_averaged, stop_time = stop_time)
+run_simulation(case = :no_waves_lagrangian, stop_time = stop_time)
+run_simulation(case = :no_waves_eulerian, stop_time = stop_time)
 
-@info "Both simulations complete!"
+@info "All three simulations complete!"
