@@ -23,35 +23,35 @@
 using Oceananigans
 using Oceananigans.Units: minute, minutes, hours
 using Printf
+using CUDA
 
 # Physical parameters
 f = 1e-4       # Coriolis parameter [s⁻¹]
-N² = 1.936e-5  # Initial buoyancy gradient [s⁻²]
+N² = 2e-5  # Initial buoyancy gradient [s⁻²]
 g = Oceananigans.defaults.gravitational_acceleration
 
 # Wave parameters (monochromatic deep-water surface gravity waves)
-amplitude = 0.8    # m
-wavelength = 60.0  # m
+amplitude = 0.8  # m
+wavelength = 60  # m
 wavenumber = 2π / wavelength            # m⁻¹
 frequency = sqrt(g * wavenumber)        # s⁻¹
 vertical_scale = wavelength / (4π)      # 1 / (2k) decay scale
 Uˢ_surface = amplitude^2 * wavenumber * frequency  # surface Stokes drift [m s⁻¹]
 
 # Weak destabilizing surface buoyancy flux
-Qᵇ = 2.307e-8  # m² s⁻³
+Qᵇ = 1e-8  # m² s⁻³
 
 # Surface kinematic momentum flux
-τx = -3.72e-5  # m² s⁻²
+τx = 0  # m² s⁻²
 
 # Domain
-Lx = 128.0 # m
-Ly = 128.0 # m
-Lz = 64.0  # m
+Lx = Ly = 512 # m
+Lz = 256 # m
 
-# Resolution (low for CPU testing; increase for production)
-Nx = 32
-Ny = 32
-Nz = 32
+# Resolution: 4m horizontal, 2m vertical
+Nx = 128
+Ny = 128
+Nz = 128
 
 # Stokes drift profile: uˢ(z) = Uˢ_surface * exp(z / vertical_scale)
 uˢ(z) = Uˢ_surface * exp(z / vertical_scale)
@@ -74,7 +74,7 @@ sponge_params = (; Lz, δ = sponge_width, τ = sponge_timescale, N² = N²)
 
 # Initial conditions
 noise_amplitude = 1e-2  # m s⁻¹
-initial_mixed_layer_depth = 33.0 # m
+initial_mixed_layer_depth = 50
 
 stratification(z) = z < -initial_mixed_layer_depth ? N² * z : N² * (-initial_mixed_layer_depth)
 
@@ -83,9 +83,9 @@ vᵢ(x, y, z) = noise(z)
 wᵢ(x, y, z) = noise(z)
 bᵢ(x, y, z) = stratification(z) + 1e-1 * (2 * rand() - 1) * N² * Lz * exp(z / 4)
 
-function run_simulation(; case, stop_time = 2 * 2π / f)
+function run_simulation(; case, stop_time = 4 * 2π / f)
 
-    grid = RectilinearGrid(CPU(),
+    grid = RectilinearGrid(GPU(),
                            size = (Nx, Ny, Nz),
                            extent = (Lx, Ly, Lz),
                            topology = (Periodic, Periodic, Bounded))
@@ -119,7 +119,7 @@ function run_simulation(; case, stop_time = 2 * 2π / f)
 
     uᵢ(x, y, z) = u_multiplier * uˢ(z) + noise(z)
 
-    u_bcs = FieldBoundaryConditions(top = FluxBoundaryCondition(τx))
+    u_bcs = FieldBoundaryConditions()
     b_bcs = FieldBoundaryConditions(top = FluxBoundaryCondition(Qᵇ),
                                     bottom = GradientBoundaryCondition(N²))
 
@@ -136,8 +136,8 @@ function run_simulation(; case, stop_time = 2 * 2π / f)
     set!(model, u = uᵢ, v = vᵢ, w = wᵢ, b = bᵢ)
 
     # Create simulation
-    simulation = Simulation(model; Δt = 10.0, stop_time)
-    conjure_time_step_wizard!(simulation, cfl = 0.5, max_Δt = 1minute)
+    simulation = Simulation(model; Δt = 10, stop_time)
+    conjure_time_step_wizard!(simulation, cfl=0.7)
 
     # Progress callback
     function progress(sim)
@@ -163,8 +163,21 @@ function run_simulation(; case, stop_time = 2 * 2π / f)
     # 3D snapshots (infrequent)
     simulation.output_writers[:fields] =
         JLD2Writer(model, (; u, v, w, b),
-                   schedule = TimeInterval(15minutes),
+                   schedule = TimeInterval(2hours),
                    filename = "$(filename)_fields.jld2",
+                   overwrite_existing = true)
+
+    # 2D slices (frequent, for animation)
+    w_xz = Field(w; indices = (:, 1, :))
+    u_xz = Field(u; indices = (:, 1, :))
+    b_xz = Field(b; indices = (:, 1, :))
+    w_xy = Field(w; indices = (:, :, Nz))
+    u_xy = Field(u; indices = (:, :, Nz))
+
+    simulation.output_writers[:slices] =
+        JLD2Writer(model, (; w_xz, u_xz, b_xz, w_xy, u_xy),
+                   schedule = TimeInterval(5minutes),
+                   filename = "$(filename)_slices.jld2",
                    overwrite_existing = true)
 
     # Horizontally-averaged profiles (more frequent)
