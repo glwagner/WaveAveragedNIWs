@@ -1,0 +1,748 @@
+\title{
+Gravitational, Symmetric, and Baroclinic Instability of the Ocean Mixed Layer
+}
+
+\author{
+Thomas W. N. Haine* and John Marshall \\ Department of Earth, Atmospheric, and Planetary Sciences, Massachusetts Institute of Technology, Cambridge, Massachusetts
+}
+(Manuscript received 29 April 1996, in final form 23 July 1997)
+
+\begin{abstract}
+A hierarchy of hydrodynamical instabilities controlling the transfer of buoyancy through the oceanic mixed layer is reviewed. If a resting ocean of horizontally uniform stratification is subject to spatially uniform buoyancy loss at the sea surface, then gravitational instability ensues in which buoyancy is drawn from depth by upright convection. But if spatial inhomogeneities in the ambient stratification or the forcing are present (as always exist in nature), then horizontal density gradients will be induced and, within a rotation period, horizontal currents in thermal-wind balance with those gradients will be set up within the mixed layer. There are two important consequences on the convective process:
+1) Upright convection will become modified by the presence of the thermal wind shear; fluid parcels are exchanged not along vertical paths but, rather, along slanting paths in symmetric instability. Theoretical considerations suggest that this slantwise convection sets the potential vorticity of the mixed layer fluid to zero but, in general, will leave it stably stratified in the vertical.
+2) The convective process ultimately gives way to a baroclinic instability of the horizontal mixed layer density gradients. The resulting baroclinic waves are important agents of buoyancy transport through the mixed layer and can be so efficient that the convective process all but ceases.
+The authors illustrate and quantify these ideas by numerical experiment with a highly resolved nonhydrostatic Navier-Stokes model. Uniform spatial cooling at the surface of a resting, stratified fluid in a \(2 \frac{1}{2}\)-dimensional model on an \(f\) plane, in which zonal strips of fluid conserve their absolute momentum, causes energetic vertical overturning. A well-mixed boundary layer develops over a depth that is accurately predicted by a simple 1D law. In contrast, differential surface cooling induces a mixed layer front. Fluid parcels, made dense at the surface, sink along slanting trajectories in intense nonhydrostatic plumes. After cooling ceases the Ertel potential vorticity within the convective layer is indeed found to be vanishingly small, corresponding to convective neutrality measured in the absolute momentum surfaces that are tilted from the vertical by the horizontal vorticity of the thermal wind.
+
+In analogous fully three-dimensional calculations, the absolute momentum constraint is broken, and the convection at first coexists with, but is ultimately dominated by, a baroclinic instability of the mixed layer. For typical mixed layer depths of 500 m stability analysis predicts, and our explicit calculations confirm, that baroclinic waves with length scales \(O(5 \mathrm{~km})\) develop with timescales of a day or so. By diagnosis of fully developed mixed layer turbulence, the authors assess the importance of the baroclinic eddy field as an agency of lateral and vertical buoyancy flux through the layer. A novel scaling for the lateral buoyancy flux due to the baroclinic eddies is suggested. These ideas are based on analysis of several experiments in which the initial stratification, rotation rate, and buoyancy forcing are varied, and the results are compared to previous attempts to parameterize the effects of baroclinic instability. There is a marked difference between the scaling that accounts for the resolved experiments and the Fickian schemes used traditionally in large-scale ocean models.
+
+Finally, consideration of the results in light of high-resolution mixed layer hydrographic surveys in the northeast Atlantic suggests mixed layer baroclinic instability may be very important at fronts. The authors speculate that the process exerts a large influence on the character of newly subducted thermocline water throughout the extratropical ocean.
+\end{abstract}
+
+\section*{1. Introduction}
+
+Knowledge and accurate representation of the processes controlling the development of the upper ocean
+
+\footnotetext{
+* Current affiliation: Atmospheric, Oceanic and Planetary Physics, Clarendon Laboratory, Oxford, United Kingdom.
+
+Corresponding author address: Dr. Thomas W. N. Haine, Atmospheric, Oceanic and Planetary Physics, Clarendon Laboratory, Parks Road, Oxford OX1 3PU, United Kingdom.
+E-mail: T.Haine1@physics.ox.ac.uk; marshall@gulf.mit.edu
+}
+is vital if we are to understand the ways in which the large-scale ocean structure is determined and develop a quantitative theory of it. The surface mixed layer of the ocean, directly in contact with the atmosphere, is of central importance in determining the manner and rates of heat, freshwater, momentum, and gas exchange with the interior of the ocean. Traditional oceanic mixed layer paradigms (e.g., Kraus and Turner 1967; Mellor and Yamada 1974) suppose that the properties of this surface layer are set by vertical mixing caused by mechanical stirring from the wind, surface gravity wave breaking and by convective mechanisms induced
+
+\begin{figure}
+\includegraphics[alt={},max width=\textwidth]{https://cdn.mathpix.com/cropped/127a3bf6-8762-4618-b99a-2cbe18b37b6a-02.jpg?height=796&width=1267&top_left_y=292&top_left_x=431}
+\captionsetup{labelformat=empty}
+\caption{FIG. 1. (a) A traditional mixed layer model where a layer with zero vertical stratification is developed by gravitational overturning and surface buoyancy loss. (b) In the presence of a lateral density gradient in a rotating frame, symmetric instability sets the potential vorticity to zero, leaving weak stratification. This layer is unstable to baroclinic waves, which results in lateral buoyancy transfer in the mixed layer.}
+\end{figure}
+by buoyancy loss from the sea surface. The latter process dominates in mixed layers deeper than \(O(100 \mathrm{~m})\) and is a consequence of the familiar gravitational overturning (or upright convection) associated with denser fluid overlying lighter fluid (represented schematically in Fig. 1a).
+
+The upper ocean is not horizontally homogeneous, however, as is clearly revealed by any high-resolution survey (e.g., Samelson and Paulson 1988). For example, Fig. 2 is a section from the northeast Atlantic (obtained in April 1991 by a SeaSoar-a towed, undulating CTD; Cunningham et al. 1992; Pollard 1986) revealing density gradients from the smallest resolved scales \([O(5 \mathrm{~km})\) horizontally: \(O(5 \mathrm{~m})\) vertically] to the length and depth of the survey. One frequently observes unstable regions adjacent to stratified fluid. At the northern end of the section the upper 250 m is homogeneous, or slightly unstable, a signature that active overturning is under way. A warmer layer is seen to the south that has large regions of very weak stratification despite a surface cap of lighter fluid in the upper \(20-30 \mathrm{~m}\). At \(45.4^{\circ} \mathrm{N}\), near the southern end of the section, an anticyclonic eddy is apparent. This feature occupies the upper 300 m of the water column and has a characteristic diameter of 25 km . The core, and the surrounding fluid, is weakly stratified with statically unstable patches. A shallower (upper 100 m ) feature is present at \(46.5^{\circ} \mathrm{N}\) and is almost detached from the less dense water to the south. These observations give no obvious indication of a vertically homogeneous mixed layer separated from stratified water below. Indeed, it is very difficult to define the mixed layer in
+an unambiguous way. The mixed layer depth, diagnosed as the depth at which the density exceeds the surface value by \(0.05 \mathrm{~kg} \mathrm{~m}^{-3}\), is shown, but does not correspond to any clear mixed layer base. In fact, the mixed layer depth determined in this way is very sensitive to the exact criterion used. Nevertheless, there are significant lateral gradients within the convectively stirred layer, caused by a variety of hydrodynamical processes induced by surface buoyancy and momentum fluxes. Clearly, if these hydrodynamical processes are sufficiently slow and large scale, the earth's rotation will influence them.
+
+In this paper we review and investigate some of the key processes that control the flux of buoyancy vertically and horizontally in the upper ocean. We argue, and illustrate by numerical experiment, that in the presence of lateral density gradients upright convection can be modified by thermal wind shear so that overturning occurs along paths that slant to the vertical. This slantwise convection rapidly (typically over a few hours) restores the Ertel potential vorticity of the convecting layer to zero and maintains a layer with weak vertical stratification. But of equal importance is that this state is susceptible to nonhydrostatic baroclinic instability, which quickly develops causing vertical and lateral transfer of buoyancy in the mixed layer (Fig. 1b) on geostrophic scales. Numerical experiments show that baroclinic instability in the mixed layer can result in lateral buoyancy fluxes that significantly modify the shoaling and deepening of the layer and are so efficient that the convective process all but vanishes.
+
+Finally, scaling laws are deduced, and tested against
+
+\begin{figure}
+\includegraphics[alt={},max width=\textwidth]{https://cdn.mathpix.com/cropped/127a3bf6-8762-4618-b99a-2cbe18b37b6a-03.jpg?height=893&width=1546&top_left_y=287&top_left_x=313}
+\captionsetup{labelformat=empty}
+\caption{Fig. 2. Vertical section of potential density ( \(\mathrm{kg} \mathrm{m}^{-3}\) : referenced to the surface) along a southward cruise track in the northeast Atlantic in April 1991 (Vivaldi cruise). The measurements were made from a SeaSoar instrument (Pollard 1986), a towed undulating CTD that cycles between the surface and 500 m every 4 km along the track. The dashed line shows the mixed layer depth diagnosed as the depth at which the density exceeds the surface density by \(0.05 \mathrm{~kg} \mathrm{~m}^{-3}\). The contours mark those regions where the vertical stratification is very weak or unstable \(\left[N^{2}<1 \times 10^{-8} \mathrm{~s}^{-2}\right.\), where \(N\) is the Brunt-Väisälä frequency, Eq. (2)]. The profiles of \(N^{2}\) were smoothed with a 20 -db low-pass filter.}
+\end{figure}
+our numerical experiments, in an attempt to quantify the importance of these dynamical processes in the field. They suggest that lateral transfer by mixed layer baroclinic instability may be ubiquitous and represent an important process that is absent from one-dimensional mixed layer paradigms. It is most significant at the time of subduction, in the aftermath of deep-reaching convection (shortly after the data in Fig. 2 were taken), and may be influential in setting the characteristics of newly formed thermocline water.
+
+\section*{2. Theoretical background}
+
+The various types of instability that occur naturally in the oceanic mixed layer are hybrid in nature. It is instructive, however, to consider idealized limit cases in which one or another of the destabilizing forces acts alone. Four simple types of instability are of interest (they are reviewed in a meteorological context by Eady 1951) and are discussed here in the context of oceanic mixed layers:
+
+1a) Gravitational instability ("ordinary" convection or static instability)
+1b) Centrifugal instability (sometimes called inertial instability)
+2a) Baroclinic instability (of the thermal wind)
+2b) Helmholtz instability (at a velocity discontinuity).
+
+Instability of type 1a has been the traditional focus in studies of the mixed layers. Instability of type 1b is unlikely to occur in pure form in the mixed layer, but the hybrid gravitational-centrifugal instability 1ab (known as "symmetric instability") is likely to occur and is one of the focuses of the present study. Instability of type 2a is not widely associated with mixed layer processes, but a number of theoretical studies (Stone 1971; Young and Chen 1995; Fukamachi et al. 1995; Barth 1994) have pointed to its importance. We argue here that baroclinic instability may be one of the most important processes active in mixed layers. Finally, instability of type \(2 b\) is significant in mixed layers where there is a strong vertically sheared flow-especially at low latitudes (see Pollard et al. 1973; Price et al. 1986). Because it is a mechanically driven, rather than a buoyancy driven, process we do not consider it further here. In the following brief review we make much use of parcel theory-this is summarized in appendixes A and B.
+
+\section*{a. Type 1a: Gravitational instability}
+
+Consider a resting ocean of constant stratification \(N_{\mathrm{th}}\) (the thermocline stratification) subject to uniform and widespread buoyancy loss from its upper surface as shown in Fig. 1a. The thermodynamic equation is
+\[
+\frac{D b}{D t}=B,
+\]
+where \(b=-\left(g / \rho_{o}\right) \sigma\) is the buoyancy; \(\sigma\) the potential density; \(\rho_{0}\) a constant reference density; \(g\) the acceleration due to gravity; \(B=\partial \mathcal{B} / \partial z\) is the buoyancy forcing, the divergence of the flux \(\mathcal{B}\); and \(D / D t\) is the material derivative.
+
+The fluid cannot simultaneously overturn on the large scale; rather the qualitative description must be that the response to widespread cooling is one in which relatively small convection cells (plumes) develop. Fluid parcels at the surface become dense and sink under gravity displacing less dense parcels from below. The continual exchange of fluid parcels in this way will, over time, create a layer that, as we show below, is very close to neutral with respect to its thermodynamic properties. However, as long as the buoyancy loss persists there will be, on the average, a small statically unstable buoyancy gradient:
+\[
+N_{\operatorname{mix}}^{2}=\frac{\partial b}{\partial z}<0
+\]
+where \(N_{\text {mix }}\) is the Brunt-Väisälä frequency in the overturning layer. If \(N_{\text {mix }}^{2}<0\), then exchange of parcels vertically must release gravitational potential energy. Since horizontal motion does not affect potential energy, one need only consider vertical overturning; parcel theory [see appendix A, Eq. (A3)] then yields an upper limit on the growth rate \(\omega\) :
+\[
+\omega^{2} \leq\left|N_{\mathrm{mix}}^{2}\right| .
+\]
+
+For a prescribed \(N_{\text {mix }}^{2}\), with appropriate boundary conditions, it is straightforward to obtain complete solutions through linear stability analysis (see, e.g., Rayleigh 1916; Veronis 1958; Chandrasekhar 1961); these show that \(\omega^{2}\) is nearly attained when the convection cells are tall and thin, for which little energy is supplied to horizontal motion. Laboratory simulations, however, suggest that the aspect ratio of fully developed turbulent convection approaches unity such that horizontal and vertical scales are of the same order. \({ }^{1}\)
+
+Many competing effects combine to control the detailed dynamics on the plume scale. However, irrespective of these details, the gross transfer properties of the population of convective cells must be controlled by the large scale; the raison d'être for the overturning is to flux buoyancy vertically to offset buoyancy loss at the surface. As shown in appendix A, the following "law"
+
+\footnotetext{
+\({ }^{1}\) The detailed dynamics setting the plume scale in ocean convection is, as yet, unclear. For example, if the convecting layer becomes deep enough then the concomitant increase in the lateral scale may cause the convection to be influenced by Taylor columns associated with the earth's rotation. This may occur in open-ocean deep convection, but will not be pursued here. In recent years it has been studied at some length-see the review by Marshall et. al. (1994).
+}
+of vertical buoyancy transfer for the plume scale \(\mathcal{B}_{p}\) can be developed using the same parcel theory that leads to Eq. (3):
+\[
+\mathcal{B}_{p}=w \Delta b=\Delta z^{1 / 2} \Delta b^{3 / 2},
+\]
+where \(w\) is the vertical velocity in the plume, \(\Delta z\) its vertical extent, and \(\Delta b\) is the difference in buoyancy of the rising and sinking fluid. Note that the above scaling is appropriate in the highly supercritical limit and assumes that visco-diffusive parameters are irrelevant. It also assumes that the mixed layer is sufficiently shallow that rotational effects are not dominant; that is, Ro* = \((1 / h) \sqrt{\mathcal{B} / f^{3}}\), the natural Rossby number, is sufficiently large ( \(h\) is the mixed layer depth and \(f\) the Coriolis parameter). Then the classical nonrotating scalings are appropriate. In some of the convection experiments of Jones and Marshall (1993) Ro* was small enough for rotation to affect the convection scale. In the experiments presented below the rotational limit does not apply.
+
+If the plumes, acting in concert, achieve a vertical buoyancy flux sufficient to balance loss from the surface, then \(\mathcal{B}_{p}=\mathcal{B}_{0}\), and choosing a deep mixed layer exposed to a heat loss of \(\sim 500 \mathrm{~W} \mathrm{~m}^{-2}\), typical of deep winter mixed layers:
+\[
+\Delta z=1000 \mathrm{~m} ; \quad \mathcal{B}_{0}=10^{-7} \mathrm{~m}^{2} \mathrm{~s}^{-3}
+\]
+we deduce that the temperature anomalies, \(\Delta T \sim 0.001^{\circ} \mathrm{C}\), typical vertical velocities are [using (A2) of the appendix A] a few centimeters per second with timescales of perhaps 8 h or so. Here we have assumed that the buoyancy loss is all due to heat and the thermal expansion coefficient of water \(\alpha\) is \(2 \times 10^{-4} \mathrm{~K}^{-1}\). It is notable that such a tiny temperature difference between rising and sinking fluid parcels can achieve a very large heat (and buoyancy) flux. We conclude that in the absence of lateral inhomogeneities the vertical column within the convecting layer is indeed very well mixed; \(N_{\text {mix }}^{2}\) in Eq. (2) is very small relative to typical thermocline stratifications. In the limit that \(N_{\text {mix }} / N_{\text {th }} \ll 1\) and to the extent that entrainment of stratified fluid from the base of the mixed layer can be neglected, Eq. (1) tells us that the depth of the mixed layer \(h\) must increase with time \(t\) according to (Turner 1973):
+\[
+h=\frac{\sqrt{2 \mathcal{B}_{0} t}}{N_{\mathrm{th}}},
+\]
+where \(\mathcal{B}_{0}\) is the buoyancy forcing at the sea surface and \(N_{\mathrm{th}}\) is the stratification of the underlying fluid.
+
+\section*{b. Type 1b: Centrifugal instability}
+
+Suppose that the mixed layer is of uniform density everywhere ( \(N_{\text {mix }}^{2}=0\) ) and that a horizontal barotropic velocity \(u(y)\) exists within the layer with \(d u / d y\) a constant. Now energy exists only in kinetic form. Let us consider overturning in the \(y z\) plane with no variations
+in \(x\). Then a consideration of the zonal momentum equation (assumed inviscid) on an \(f\) plane tells us that
+\[
+\frac{D m}{D t}=0,
+\]
+where
+\[
+m=u-f y
+\]
+is the absolute momentum with \(f\) the Coriolis parameter and \(u\) the zonal velocity.
+
+Since \(u=u(y)\), the \(m\) surfaces are vertical at all times and parcel theory (appendix B) tells us that energy is released if \(u_{y}>f\), corresponding to negative absolute vertical vorticity \(\zeta\), and that the growth rate is
+\[
+\omega^{2} \leq f\left(u_{y}-f\right)=-f \zeta .
+\]
+
+Linear theory predicts that the maximum growth rate occurs for shallow, broad cells since there is no energetic advantage to be gained in exchanging particles vertically.
+
+Pure centrifugal instability of this kind is not likely to be common in oceanic mixed layers because of the stabilizing effect of the earth’s rotation, except perhaps at low latitudes in regions of anticyclonic vorticity.
+
+\section*{c. Type 1ab: Symmetric instability; gravitational-centrifugal instability}
+
+Now let us combine the results of sections 1a and 1b to consider a system in which neither \(N_{\text {mix }}^{2}\) or \(u_{y}\) vanishes. This corresponds to the normal state of affairs in a mixed layer-drawn schematically in Fig. 1b-in which the density varies in the horizontal across the mixed layer (because of more vigorous convection on one side than the other, for example). On the large-scale a zonal current \(u(y, z)\) will develop in thermal wind balance with lateral mixed layer density gradients, given by
+\[
+u_{z}=m_{z}=-\frac{b_{y}}{f} .
+\]
+
+The presence of rotation and a zonal flow in thermal wind balance with a lateral density gradient place, through Eq. (6), important rotational and angular momentum constraints on the convective process. The \(m\) surfaces, which before were vertical, are now, because of the presence of the thermal wind and its associated horizontal component of vorticity, tilted over. Because the \(m\) surfaces are material surfaces, they will induce fluid particles to move along slanting rather then vertical paths. Moreover, the stability of the layer will depend on the sign of \(\boldsymbol{\nabla} b\) measured in the \(m\) surface (corresponding to gravitational instability) or the sign of the absolute vorticity normal to the \(b\) surface (corresponding to centrifugal instability). Both viewpoints are complementary and entirely equivalent. Emanuel (1994) calls this more general mixed instability "slantwise convection." The stability depends on the sign of the potential vorticity (Hoskins 1974):
+\[
+Q=\frac{1}{g} \eta \cdot \nabla b
+\]
+a measure of the stratification in the direction of \(\eta\), the absolute vorticity vector or, equivalently, a measure of \(\eta\) normal to \(b\) surfaces. If, as in our thought experiment, there are no variations in \(x\), then the absolute vorticity vector lies in a surface of constant absolute momentum, and \(Q\) is just the Jacobian of \(m\) and \(b\) :
+\[
+Q=\frac{1}{g} J_{y z}(m, b)
+\]
+
+If \(Q\) is negative, then the flow is unstable to symmetric instabilities and slantwise convection might be expected to return the \(Q\) of the layer to zero, the state of marginal stability. The sign of \(Q\) depends on the slope of the \(m\) surfaces relative to the \(b\) surfaces and is zero when they are exactly coincident; in the limit of zero \(Q\) there is no stratification in an \(m\) surface and the component of \(\eta\) normal to the \(b\) surface is zero. The magnitude of the absolute vorticity, resolved perpendicular to the \(b\) surfaces, is simply \(|\eta|=g Q /|\nabla b|\). For small slopes \(|\nabla b| \sim N_{\text {mix }}^{2}\) and
+\[
+Q=\frac{f N_{\mathrm{mix}}^{2}}{g}\left(\frac{\zeta}{f}-\frac{1}{\mathrm{Ri}}\right)
+\]
+where \(\zeta=f-u_{y}\) is the vertical component of the absolute vorticity and \(\mathrm{Ri}=N_{\text {mix }}^{2} / u_{z}^{2}\) is the Richardson number.
+
+Parcel theory can be readily employed to analyze the stability of a zonal flow in thermal wind balance to overturning in a vertical plane. The method is outlined in appendix B-see also chapter 12 of Emanuel (1994). Maximum release of energy occurs when fluid parcels are exchanged along surfaces coincident with the \(b\) surfaces. Then parcel theory yields
+\[
+\omega^{2} \leq-f^{2}\left(\frac{\zeta}{f}-\frac{1}{\mathrm{Ri}}\right)
+\]
+and the flow will be unstable when \(Q<0\) or, equivalently,
+\[
+\operatorname{Ri}<f / \zeta
+\]
+[see Eq. (B5), appendix B].
+Thus, we see that symmetric instability (overturning in the vertical plane with conservation of zonal momentum) is to be expected when
+- absolute vorticity is small (anticyclonic shear), though it need not be negative
+- horizontal thermal gradient is strong (large \(u_{z}\) )
+- the static stability is small.
+
+These conditions are likely to be met frequently within the oceanic mixed layer.
+
+Moreover, the arguments above suggest that, if \(Q<\) 0 , then one might expect convection (appropriately generalized in the "symmetric" sense) to occur and that
+the end state of the convective process will be one in which \(Q \rightarrow 0\).
+
+\section*{d. Baroclinic instability}
+
+Let us now allow variations in \(x\); the momentum of fluid parcels can be changed by pressure gradient forces and will not be conserved. On the large-scale Coriolis effects are important and, through the thermal wind relation, make possible a storage of potential energy on which instabilities can feed. The three spatial dimensions permit currents in the \(x\) direction that are side-byside in a baroclinic instability, rather than above one another as in the case of uniform overturning in symmetric instability. If the Richardson number of the flow is large, then the ensuing motion is quasigeostrophic; the most unstable modes, on the scale of the Rossby radius of deformation, exchange parcels along surfaces that have a slope one-half of that of the isentropic surface. The growth rate can be deduced using parcel theory \([\text { see (B8) }]^{2}\) :
+\[
+\omega^{2} \leq \frac{f^{2}}{\mathrm{Ri}}, \quad \text { if } \quad \mathrm{Ri} \gg 1 .
+\]
+
+In the oceanic mixed layer Ri will not be large-it is likely to be of order unity-and the quasigeostrophic result (15) must be modified.
+
+Stone \((1971,1972)\) derived expressions for the growth of linear baroclinic waves in the low Richardson number limit and showed that the results of Eady (1949) apply with only quantitative modification [essentially \(\mathrm{Ri} \rightarrow(1+\mathrm{Ri})]\). The baroclinic instability mechanism endures in flows in which Ri is \(O(1)\) and, indeed, coexists with symmetric instability if \(\mathrm{Ri}<1\). Stone showed that the growth rate of the most unstable (modified) Eady mode is
+\[
+\omega=0.304 \frac{f}{(1+\mathrm{Ri})^{1 / 2}},
+\]
+and the scale of this mode is
+\[
+L_{\rho}=1.016 \frac{N h}{f}(1+\mathrm{Ri})^{1 / 2} \quad \mathrm{Ri} \geq 1 .
+\]
+
+Figure 3 compares the Eady (1949) and Stone (1971) dispersion relations for unstable modes when \(\mathrm{Ri}=1\).
+
+\footnotetext{
+\({ }^{2}\) Care must be taken in the application of parcel theory to baroclinic instability because fluid parcels do not conserve momentum, so computations of kinetic energy change cannot be made with precision. Moreover, unlike convection and symmetric instability, which are local in nature, baroclinic instability is global and intimately associated with the temperature distribution along the boundary. Nevertheless analogies with convection can be usefully drawn. Indeed, Eady (1949) drew such analogies and, along with exact solutions of the linear problem, also showed how to deduce Eq. (15) heuristically using parcel theory.
+}
+
+\begin{figure}
+\includegraphics[alt={},max width=\textwidth]{https://cdn.mathpix.com/cropped/127a3bf6-8762-4618-b99a-2cbe18b37b6a-06.jpg?height=720&width=781&top_left_y=292&top_left_x=1089}
+\captionsetup{labelformat=empty}
+\caption{FIG. 3. Dispersion relation for baroclinic instability in a uniformly stratified layer where \(\mathrm{Ri}=1\). The dashed line is Eady's (1949) result, appropriate for asymptotic large Ri; the full line is due to Stone's (1971) nonhydrostatic theory for \(\mathrm{Ri} \geq 1\), where the ratio of the aspect ratio to the Rossby number is unity. The wavenumber has been nondimensionalized with a characteristic scale \(u / f\) where \(u\) is the characteristic zonal speed. The growth rate has been nondimensionalized by the inertial frequency and the dimensional dispersion curve is for the case of a layer 500 m deep.}
+\end{figure}
+
+Although Eady's analysis is formally inapplicable, his result is qualitatively correct. Stone's more general theory predicts that the growth rates are slower and the fastest growing modes are at larger scales. Figure 3 also shows the corresponding dimensional values for a layer of depth 500 m . In such an unstable mixed layer the linear theory predicts that the fastest growing mode has a wavelength of a few kilometers and will grow exponentially with a characteristic timescale of around a day.
+
+Summary. We conclude that there is a hierarchy of instability mechanisms potentially at work in oceanic mixed layers; theory suggests that symmetric instability and baroclinic instability ought to be ubiquitous in mixed layers and potentially important in the mixed layer buoyancy budget. In the following sections we present numerical calculations that confirm the importance of these processes and illustrate
+1) the evolution of a symmetric instability when absolute momentum is conserved by zonal strips of fluid, showing convection along slanting paths and the restoration of the mixed layer to the neutral, zero potential vorticity state
+2) the development of a baroclinic instability of the zero potential vorticity state when the absolute momentum constraint is relaxed
+3) the modification of the properties of the mixed layer due to lateral and vertical eddy transfer of buoyancy due to fully developed geostrophic eddies.
+
+\section*{3. Numerical experiments in convective, symmetric, and baroclinic instability}
+
+In order to test the theoretical ideas summarized in the previous section we employ a numerical model configured to focus on the processes of interest. The model, described in Marshall et al. (1997a,b) solves the NavierStokes equations for a Boussinesq incompressible fluid using finite-volume techniques; it need not make the hydrostatic approximation.
+
+The model geometry is shown in Fig. 4a. A periodic channel with constant depth is used of, nominally, length 50 km and width 30 km . The cell dimension is 250 m in the horizontal with vertical spacing varying between 40 m at the surface and 400 m at the bottom. Initially the fluid is uniformly stratified and motionless. We adopt a linearized equation of state with one thermodynamically active variable:
+\[
+\sigma=\rho_{0}\left[1-\alpha\left(T-T_{0}\right)\right],
+\]
+where the expansion coefficent \(\alpha\) is \(2 \times 10^{-4} \mathrm{~K}^{-1}\) at temperature \(T_{0}\).
+
+To represent unresolved dynamics and ensure numerical stability a Laplacian diffusion of heat and momentum is applied. The diffusivities and viscosities are equal with horizontal and vertical magnitudes of 5 and \(0.02 \mathrm{~m}^{2} \mathrm{~s}^{-1}\), respectively. The horizontal diffusivity was chosen to be the smallest possible to guarantee a coherent vertical velocity and vorticity on the grid. Our numerical solutions are less sensitive to the vertical diffusivity; indeed the vertical diffusivity could have been set to zero without any deleterious effects. Free slip is allowed at the solid boundaries. The model also integrates a dynamically passive tracer held at a constant value in the uppermost layer, and initially set to zero elsewhere. The calculations presented in this paper were carried out on a 128 node CM5 computer at the Massachusetts Institute of Technology.
+
+\section*{a. Gravitational instability; upright convection}
+
+First, we investigate upright overturning using 2D ( \(y\), z) nonhydrostatic dynamics where initially the fluid is uniformly stratified ( \(N_{\text {th }}=8 \times 10^{-4} \mathrm{~s}^{-1}\) ), resting, and rotating at a constant rate of \(10^{-4} \mathrm{~s}^{-1}\). The motion is forced by a steady, constant, surface buoyancy loss of \(2 \times 10^{-7} \mathrm{~m}^{2} \mathrm{~s}^{-3}\), that corresponds to an oceanic heat loss of \(400 \mathrm{~W} \mathrm{~m}^{-2}\) (Table 1: experiment 1).
+
+Results after 9 days show energetic vertical overturning in a boundary layer several hundred meters thick (Fig. 5a; upper 1000 m only), whereas below there is extremely weak flow-essentially this region is undisturbed. The gross aspects of the convection are resolved in the model, albeit coarsely. The streamfunction shows the convection cells are organized into rolls with no preferred direction of slant in the vertical plane. Figure 5b is a horizontal average of the boundary layer in Fig.
+
+5a. It reveals a temperature inversion close to the surface of around \(0.025^{\circ} \mathrm{C}\), whereas in the interior of the convective layer there is a much smaller vertical temperature gradient with a contrast of \(0.003^{\circ} \mathrm{C}\) over the full depth of the boundary layer, in good accord with the parcel theory of section 1a. The gross predictions from the "law of vertical buoyancy flux" [Eq. (4)] derived in appendix A are well supported by the explicit calculation.
+
+Using the mean temperature profile (Fig. 5b) we estimate a depth for the mixed layer using a criterion based on the stratification. This procedure is applied at several times during the evolution of the experiment and the resulting time series plotted in Fig. 5c along with the prediction of the simple 1D, nonpenetrative law [the solid curve-Eq. (5)]. We see good agreement with the theory. The confirmation of the 1D result suggests that, at least in this numerical model, the mixed layer deepens and cools without significant entrainment of the underlying water or formation of a front at the base of the layer (in other words, there is no penetrative convection).
+
+\section*{b. Symmetric instability}
+
+Now we examine convection in the presence of lateral inhomogeneities that induce lateral density gradients and a thermal wind in balance with it. Moreover, we configure the model so that zonal strips of fluid conserve their absolute momentum (all \(\partial / \partial x\) terms are set to zero). A buoyancy flux at the sea surface is specified that varies across the channel according to a hyperbolic tangent, thus,
+\[
+\mathcal{B}=\mathcal{B}_{1 / 2}\left\{\tanh \left[2\left(y-L_{y} / 2\right) / L_{f}\right]+1\right\}
+\]
+where \(\mathcal{B}_{1 / 2}\) is the buoyancy flux at midchannel, \(y\) the distance across the channel, \(L_{y}\) the channel width, and \(L_{f}\) a characteristic length scale of the forcing (see Fig. 4b and Table 1: experiment 2). The tanh function smoothly changes the forcing across the channel and provides a well-defined maximum gradient in flux, located at the channel center. This allows a mixed layer to grow that is deeper on one side of the channel than on the other, inducing a lateral density gradient and a thermal wind in balance with it.
+
+Figure 6 shows the fields from the central portion of the channel after 9 days of cooling. It is clear from the isotherms that the overturning motions cause fluid to move systematically in slanting paths and maintain a nonvanishing stratification in the region that is being actively mixed. However, the temperature field alone is a poor indicator of the regions of active overturning. Rather, potential vorticity is the key dynamical variable as shown by Fig. 6b. There are distinct plumes, of negative PV, draining the surface source of negative PV into the interior. The tracer in Fig. 6c shows striking similarities to the PV distribution reminding us that both quantities are materially conserved.
+
+\begin{figure}
+\includegraphics[alt={},max width=\textwidth]{https://cdn.mathpix.com/cropped/127a3bf6-8762-4618-b99a-2cbe18b37b6a-08.jpg?height=876&width=1509&top_left_y=287&top_left_x=249}
+\captionsetup{labelformat=empty}
+\caption{Fig. 4. (a) Schematic diagram of the model domain with an isopycnal outcropping into the mixed layer with a lateral density gradient. The Boussinesq, incompressible Navier-Stokes equations are solved starting from a resting fluid with uniform stratification. (b) Hyperbolic tangent cooling function used to generate a mixed layer front.}
+\end{figure}
+
+\begin{figure}
+\captionsetup{labelformat=empty}
+\caption{(b)}
+\includegraphics[alt={},max width=\textwidth]{https://cdn.mathpix.com/cropped/127a3bf6-8762-4618-b99a-2cbe18b37b6a-08.jpg?height=502&width=722&top_left_y=1241&top_left_x=262}
+\end{figure}
+
+The timescale of the symmetric instability has been estimated using parcel theory. The relevant expression for the growth rate is Eq. (13), which we now write as
+\[
+\omega^{2} \leq-\frac{f^{2} N_{\mathrm{th}}^{2}}{N_{\mathrm{mix}}^{2}} Q^{*},
+\]
+where \(Q^{*}\) is the PV nondimensionalized by its thermocline value
+\[
+Q^{*}=g Q /\left(f N_{\mathrm{th}}^{2}\right)
+\]
+and is the quantity plotted in Fig. 6b. Typical values of \(N_{\text {th }}^{2} / N_{\text {mix }}^{2}\) and \(Q^{*}\) are 4 and -0.3 respectively, yielding a growth rate of around 3 h .
+
+The integration shown in Fig. 6 was continued for another 24 hours, but now with the surface cooling switched off. Figure 7 shows that within this period
+almost all of the convective, turbulent flow has ceased, leaving a layer with nonvanishing vertical stratification but very small potential vorticity (around 1\% of the undisturbed value). This is confirmed by the close alignment of the isotherms with the contours of absolute momentum \(m\). The plumes of negative PV have been mixed away by the symmetric instability, erasing density gradients along absolute momentum surfaces and setting the Richardson number to unity.
+
+Also shown in these figures is the predicted mixed layer depth, \(h\), based on the simple one-dimensional scaling Eq. (5). Inspection of Figs. 6 and 7 clearly shows that the prediction is in good agreement with the base of the mixed layer. Although the mixed layer fluid has nonzero \(N\), that \(N\) is much smaller than \(N_{\text {th }}\),
+
+\begin{table}
+\captionsetup{labelformat=empty}
+\caption{Table 1. The numerical experiments. Experiments 1 and 2 were in a 2D domain (no \(x\) variation), experiments 3-16 fully 3D, experiments 1-13 were in a channel 30 km wide: experiments \(14-16\) in a channel 60 km wide. The Burger number quoted [Eq. (27)] is at time \(t= \tau_{\text {model }} \cdot\)}
+\begin{tabular}{|l|l|l|l|l|l|l|l|l|}
+\hline Experiment & \(N_{\text {th }}\) ( \(\times 10^{-4} \mathrm{~s}^{-1}\) ) & \(f\) ( \(\times 10^{-4} \mathrm{~s}^{-1}\) ) & Cooling width, \(L_{f}\) (km) & Heat flux ( \(\mathrm{W} \mathrm{m}^{-2}\) ) & Buoyancy flux, \(\mathcal{B}_{1 / 2} \left(\times 10^{-7} \mathrm{~m}^{2} \mathrm{~s}^{-3}\right)\left(\times 10^{-11} \mathrm{~m} \mathrm{~s}^{-3}\right)\) & Bu ( \(\times 10^{-3}\) ) & \(l_{\text {rot }}\) (m) & \(\tau_{\text {model }}\) (days) \\
+\hline 1 & 8.37 & 1.0 & \(\infty\) & 400 & 1.96 & - & 443 & - \\
+\hline 2 & 8.37 & 1.0 & 10 & 400 & 1.96 & - & 443 & - \\
+\hline 3 & 8.37 & 1.0 & 10 & 400 & 1.96 & 82.4 & 443 & 9.72 \\
+\hline 4 & 8.37 & 1.0 & 10 & 800 & 3.92 & 153 & 626 & 9.04 \\
+\hline 5 & 8.37 & 1.0 & 10 & 200 & 0.981 & 48.0 & 313 & 11.3 \\
+\hline 6 & 16.7 & 1.0 & 10 & 400 & 1.96 & 73.7 & 443 & 8.69 \\
+\hline 7 & 8.37 & 1.0 & 10 & 100 & 0.491 & 37.7 & 221 & 17.8 \\
+\hline 8 & 4.18 & 1.0 & 10 & 400 & 1.96 & 82.4 & 443 & 9.72 \\
+\hline 9 & 8.37 & 1.0 & 10 & 50 & 0.245 & 28.6 & 157 & 27.0 \\
+\hline 10 & 8.37 & 2.0 & 10 & 200 & 0.981 & 17.9 & 111 & 16.9 \\
+\hline 11 & 8.37 & 0.5 & 10 & 200 & 0.981 & 160 & 886 & 9.43 \\
+\hline 12 & 16.7 & 1.0 & 10 & 50 & 0.245 & 33.8 & 157 & 31.9 \\
+\hline 13 & 8.37 & 2.0 & 10 & 400 & 1.96 & 24.9 & 157 & 11.8 \\
+\hline 14 & 8.37 & 1.0 & 20 & 400 & 1.96 & 35.1 & 443 & 16.6 \\
+\hline 15 & 8.37 & 1.0 & 20 & 200 & 0.981 & 24.2 & 313 & 22.8 \\
+\hline 16 & 8.37 & 1.0 & 10 & 400 & 1.96 & 84.3 & 443 & 9.95 \\
+\hline
+\end{tabular}
+\end{table}
+so there is little systematic departure from the 1D scaling-the slantwise convection has resulted in little cross-channel buoyancy flux-a matter we examine in detail in section 4.
+
+\section*{c. Baroclinic instability}
+
+We now perform an identical experiment, but in a 3D domain, allowing zonal as well as meridional variations, and hence the possibility of baroclinic instability (Table 1: experiment 3). A typical example of the flow development is shown in Fig. 8. The nearsurface fields of temperature reveal progression from plume-scale convection at day 3 to finite amplitude baroclinic instability at day 6 with a mature field of geostrophic turbulence by day 9. A surface-intensified jet evolves in balance with the across-channel temperature gradient, with the eddying part of the flow dominating. Since there is no stress applied at the ocean surface, the global zonal momentum cannot change and eastward flow at the surface is compensated by a westward current below. The length scale for the baroclinic instability at day 6 is around 5 km somewhat larger than the prediction of Stone's linear instability analysis of about 3 km (Fig. 3). We believe this is primarily due to a nonlinear inverse cascade to larger scales familiar in two-dimensional turbulence (Rhines 1975; Held and Larichev 1996, and references therein). \({ }^{3}\)
+
+\footnotetext{
+\({ }^{3}\) It is possible that the dissipation in the model may also influence our results, although the broad conclusions are independent of the size of the assumed diffusivities provided that they are sufficiently small. Stability theory suggests (e.g., Lin and Pierrehumbert 1988) that the wavelength of the fastest growing mode is insensitive to the assumed viscosity, although the growth rate does show some sensi-
+}
+
+Figure 9 shows the zonal-mean sections of temperature and absolute momentum. At day 3 the one-dimensional prediction agrees reasonably well with the mixed layer depth one might diagnose assuming a vertically homogeneous mixed layer. Indeed, the observed stratification is very weak except near the surface where a static instability prevails, triggering the convective instability. By day 6, however, weak stratification has returned to the mixed layer despite the ongoing buoyancy loss. This result cannot be explained using onedimensional ideas, and by day 9 it is unclear how to distinguish between mixed layer fluid and the underlying water based on the temperature field alone.
+
+In Fig. 10a we plot the PV at a depth of 671 m on day 9 and can identify the major dynamical processes at work. The largest-scale features are the baroclinic eddies, which interleave high PV ambient fluid, typical of the southern part of the domain, with the convectively modified low PV water to the north. There is a strong gradient between these two water types with relatively small volumes of water with intermediate PV (Fig. 10b shows a volumetric census of the various PV and \(N^{2}\) classes in Fig. 10a). To the north the patches of negative PV identify the energetic plumes, which draw the PV and buoyancy from the fluid. Figure 11, a north-south vertical section at this time, shows the motion is dominated by geostrophic eddies over most of the channel: the flow is quasi-two-dimensional and coherent over several kilometers. In contrast we observe regions of active convection toward the northern wall. These nonhydro-
+tivity, being reduced at higher values. Nonlinear interactions rapidly result in structures with larger scales than linear theory predicts, which are thus less susceptible to damping.
+
+\begin{figure}
+\includegraphics[alt={},max width=\textwidth]{https://cdn.mathpix.com/cropped/127a3bf6-8762-4618-b99a-2cbe18b37b6a-10.jpg?height=1303&width=1320&top_left_y=292&top_left_x=406}
+\captionsetup{labelformat=empty}
+\caption{FIG. 5. Results from the gravitational overturning experiment (experiment 1-Table 1). (a) Vertical section at day 9 showing isotherms (solid, contour spacing of \(0.02^{\circ} \mathrm{C}\) ), overturning streamfunction (dashed, contour spacing of \(2 \mathrm{~m}^{2} \mathrm{~s}^{-1}\) ) and flow. The flow is shown by the small dashes, which indicate equivalent displacements after 30 min . The peak speeds are ( \(0.069,0.024\) ) \(\mathrm{m} \mathrm{s}^{-1}\) in the ( \(y, z\) ) directions. The thick dashed line is the prediction of the 1D law for the depth of the mixed layer [Eq. (5)]. Only the central third and upper 1000 m of the \(30-\mathrm{km}\)-wide and \(2000-\mathrm{m}\)-deep channel are shown. (b) Across-channel mean temperature profile at day 9. (c) Time series of mixed layer depth. Full line is 1D prediction [Eq. (5)]-circles are model results (a vertical temperature gradient of \(5 \times 10^{-5}{ }^{\circ} \mathrm{C} \mathrm{m}^{-1}\) is used to diagnose the mixed layer depth).}
+\end{figure}
+static plumes are distinctly different with \(O(1)\) aspect ratio, large vertical velocities, and negative PV. It is hard to distinguish between symmetric instability and upright overturning, unlike in the calculations of section 3b which clearly show the slantwise motions. The effect on PV is clear however: It is rapidly reset to zero by the convection induced by surface buoyancy loss.
+
+One day after the cessation of cooling the plumes of negative PV have disappeared, leaving a large pool of fluid with very small potential vorticity (Fig. 12). This low PV fluid is then vigorously folded in with the unmodified water to the south by eddies that persist for several more days. The census of PV and \(N^{2}\) shows that symmetric instability must have played an active role
+since there is a significant volume of water that has zero PV, but positive \(N^{2}\).
+
+There is no ambiguity about the depth of the mixed layer when one considers the distribution of zonal-mean potential vorticity (Fig. 13). One might choose the \(Q^{*} =0.5\) contour to distinguish between mixed layer and interior fluid, for example; the PV is normalized by the initial value [Eq. (19b)]-the interior, undisturbed fluid has a value of 1 . At day 3, before the baroclinic eddies have evolved, there is good agreement between the onedimensional prediction and the mixed layer depth diagnosed by consideration of the PV field. The PV in this region is close to zero, as expected. By day 9, however, there is a significant departure from the one-dimensional prediction of mixed layer depth. The zonal-
+
+\begin{figure}
+\includegraphics[alt={},max width=\textwidth]{https://cdn.mathpix.com/cropped/127a3bf6-8762-4618-b99a-2cbe18b37b6a-11.jpg?height=1832&width=1421&top_left_y=285&top_left_x=373}
+\captionsetup{labelformat=empty}
+\caption{FIG. 6. Vertical sections from the 2D integration (experiment 2) at day 9, for the central part of the channel. (a) Temperature (contour spacing of \(0.02^{\circ} \mathrm{C}\) ), (b) Ertel potential vorticity normalized by the PV of the initial condition, and (c) tracer. In each figure the flow and 1D mixed layer depth are shown as in Fig. 5. Peak speeds ( \(v, w\) ) are ( \(0.11,0.050\) ) \(\mathrm{m} \mathrm{s}^{-1}\).}
+\end{figure}
+average PV shows that the deepening has been retarded on the side of the channel where there is large surface buoyancy loss, whereas it is increased on the weakly cooled side. This systematic lateral flux is provided by
+baroclinic eddies and becomes the major contribution to the buoyancy budget for columns of water in the region where the cooling is weak. Comparing the angles of mixed layer isotherms in the 2D and 3D integrations
+
+\begin{figure}
+\includegraphics[alt={},max width=\textwidth]{https://cdn.mathpix.com/cropped/127a3bf6-8762-4618-b99a-2cbe18b37b6a-12.jpg?height=1825&width=1425&top_left_y=292&top_left_x=352}
+\captionsetup{labelformat=empty}
+\caption{Fig. 7. Two-dimensional switch-off experiment. As Fig. 6, but at day 10, after the surface cooling has ceased for 24 h. Absolute momentum surfaces are also shown by dotted lines (contour spacing \(0.1 \mathrm{~m} \mathrm{~s}^{-1}\) ). Peak speeds are ( 0.030 , \(0.0045) \mathrm{m} \mathrm{s}^{-1}\) in the \((y, z)\) directions at this time.}
+\end{figure}
+shows that the slopes are steeper in the 2D case (Figs. 6 and 11). This suggests that baroclinic instability is more effective at transferring fluid parcels horizontally than symmetric instability. Below we study this hori-
+zontal transfer process directly by considering the model heat budget (Fig. 14).
+
+The simulations shown in Figs. 8-14 exhibit considerable nonhydrostatic behavior as measured by a nonhy-
+
+\begin{figure}
+\includegraphics[alt={},max width=\textwidth]{https://cdn.mathpix.com/cropped/127a3bf6-8762-4618-b99a-2cbe18b37b6a-13.jpg?height=1737&width=1228&top_left_y=294&top_left_x=470}
+\captionsetup{labelformat=empty}
+\caption{Fig. 8. The evolution of temperature at a depth of 65 m for days 3,6 , and 9 of experiment 3 . The switch over from small-scale gravitational convection to finite amplitude baroclinic instability and geostrophic turbulence is clear.}
+\end{figure}
+drostatic parameter, n. Marshall et al. (1997a) show that the condition for nonhydrostatic dynamics is that
+\[
+n \equiv \operatorname{Ri} \operatorname{Ro} \gg 1,
+\]
+where Ro is the Rossby number. We observe a transition from nonhydrostatic plume dynamics through baroclinic instability modified by nonhydrostatic effects to hydrostatic baroclinic instability as the lateral scale expands-
+see Table 2 of Marshall et al. (1997a) where typical values of \(n\) are presented in a range of numerical simulations that span the hydrostatic to nonhydrostatic regime.
+
+\section*{4. Buoyancy transfer by baroclinic eddies}
+
+Here we quantitatively assess the eddy transfer occuring in our mixed layer and the way it modifies the
+
+\begin{figure}
+\includegraphics[alt={},max width=\textwidth]{https://cdn.mathpix.com/cropped/127a3bf6-8762-4618-b99a-2cbe18b37b6a-14.jpg?height=1802&width=1223&top_left_y=298&top_left_x=455}
+\captionsetup{labelformat=empty}
+\caption{Fig. 9. Sections of zonal mean temperature (full lines, contour spacing of \(0.05^{\circ} \mathrm{C}\) ) and absolute momentum (dotted lines, contour spacing of \(0.25 \mathrm{~m} \mathrm{~s}^{-1}\) ) for days 3,6 , and 9 of experiment 3 . On average the mixed layer is weakly stratified by day 9 despite the ongoing surface buoyancy loss. The thick dashed line in each plot is the prediction of the 1D law for the depth of the mixed layer [Eq. (5)]. Notice the \(x\) scale change from Figs. 5, 6, and 7.}
+\end{figure}
+development of the layer. Consider Fig. 14 showing the evolution of the total heat content for the southern half of the channel. The simple 1D prediction (surface heat loss only) is plotted with the true model heat content
+as they develop with time. The southern half of the channel loses heat at a greater rate than the simple 1D model, a consequence of the systematic lateral eddy flux; the northern half gains this heat through eddy trans-
+
+\begin{figure}
+\includegraphics[alt={},max width=\textwidth]{https://cdn.mathpix.com/cropped/127a3bf6-8762-4618-b99a-2cbe18b37b6a-15.jpg?height=1305&width=1138&top_left_y=296&top_left_x=519}
+\captionsetup{labelformat=empty}
+\caption{FIG. 10. (a) Horizontal section of potential vorticity (normalized by initial PV value) at 671m depth at day 9 from experiment 3, (b) volumetric census of PV and \(N^{2}\) classes at day 9 (logarithmic scale to base 10) showing that a significant fraction of the fluid has negative PV and \(N^{2}\). The total volume of water in the integration is \(3 \times 10^{12} \mathrm{~m}^{3}\) and was used to normalize the volumes in (b).}
+\end{figure}
+fer and so loses heat at a lesser rate than the 1D prediction. The lateral eddy buoyancy flux is diagnosed as the difference between the 1D model and the evolution observed in the model.
+
+We now study the eddy flux in the context of a closure based on the local mean buoyancy gradient following Green (1970) and Stone (1972). An alternative approach is to find the flux required to return the flow to a marginally stable state (Stone 1978)-the familiar analog for gravitational instability is convective adjustment to a neutrally stable state. However, recent work by Pavan and Held (1996) and Vallis (1988) suggests that a baroclinic adjustment procedure is less successful than a local transfer relationship in predicting baroclinic eddy fluxes (at least in their two-layer quasigeostrophic betaplane models). Therefore, we pursue a gradient closure
+and express the lateral buoyancy flux across the channel, \(\overline{v^{\prime} b^{\prime}}\), due to baroclinic instability as
+\[
+\overline{v^{\prime} b^{\prime}}=-K \overline{b_{y}},
+\]
+where \(K\), an eddy transfer coefficient, is to be related to mean-flow quantities. The lateral buoyancy gradient is \(\overline{b_{y}}\) and the overbar indicates a mean quantity (averaged along the channel).
+
+According to "mixing length" theory, the transfer coefficient can be expressed in terms of the characteristic velocity and length scales of the transfer process, thus
+\[
+K=\overline{v^{\prime} l^{\prime}}=c_{e} v_{\text {eddy }} \mu .
+\]
+
+Here \(\mu\) is a measure of the lateral transfer length scale, \(v_{\text {eddy }}\) is a measure of the typical eddy velocity, and \(c_{e}\)
+is an efficiency factor. The velocity scale will be deduced from the thermal wind in the mixed layer, while the transfer length scale will be related to the inherent scales in the problem-to the deformation radius and the width of the baroclinic zone.
+
+Eddy velocity scale. We suppose, not unreasonably, that the eddy velocity is given by
+\[
+v_{e d d y}=|u|=u_{z} h=\frac{M^{2} h}{f}
+\]
+the maximum speed of the thermal wind in the mixed layer. Here \(h\) is the mixed layer depth at the channel center, \(M^{2}=|\partial b / \partial y|\) is a measure of the lateral stratification, and the thermal wind relation has been used.
+
+Transfer length scale. What is the appropriate spatial scale to characterize the transfer process (mixing length)? Two choices are readily apparent in our channel calculation: the scale of the eddies themselves and the width of the front on which they grow (controlled in our calculations by the scale of the forcing function). The strong impression one obtains by inspection of the evolving fields of our numerical experiments (such as Figs. 8 and 10) is that, as the eddies mature, they expand to match the scale of the baroclinic zone.
+
+We provisionally suppose, then, that the transfer length scale is proportional to the frontal width. That is,
+\[
+\mu=L_{\text {zone }} .
+\]
+
+In our experiments
+\[
+L_{\text {zone }}=2 L_{f},
+\]
+where \(L_{f}\) is the width of the hyperbolic tangent function used to force the model [Eq. (18)].
+
+Thus, using (23), we write (21) as
+\[
+K=c_{e} L_{\text {zone }} u,
+\]
+where \(u=v_{\text {eddy }}\) is given by (22).
+Below we seek support for the form (25) from our explicit calculations and determine the efficiency factor \(C_{e}\).
+
+Transfer timescale. Using the characteristic velocity scale and the lateral transfer length scale allows one to form a timescale for the transfer process itself. The transfer timescale \(\tau_{\text {transfer }}\) is
+\[
+\tau_{\text {transfer }}=\mu / v_{\text {eddy }} \approx L_{\text {zone }} / u
+\]
+using (22) and (23).
+If the transfer space scale is controlled by the deformation radius rather than \(L_{\text {zone }}\), then the above scaling laws would be modifed by powers of the Burger number, Bu,
+\[
+\mathrm{Bu}=L_{\rho}^{2} / L_{\mathrm{zone}}^{2},
+\]
+where the deformation radius is
+\[
+L_{\rho}=N_{\mathrm{th}} h / f
+\]
+
+The choice of transfer scale is one of the principle features distinguishing the baroclinic eddy parameterizations of Green (1970), who supposed that the transfer
+scale was \(L_{\text {zone }}\), and Stone (1972), who supposed that it was \(L_{\rho}\), the radius of deformation. This distinction is of little consequence when the Burger number is nearly constant, but it will turn out to be important here. In our experiments (see Table 1) Bu varies by an order of magnitude since \(L_{\rho}\) and \(L_{\text {zone }}\) can be specified independently by changing the initial stratification and the scale of the externally imposed cooling function. We can thus study the dependence of our closure ideas on the Burger number. We now test the scaling law against our explicit numerical calculations focusing on two central issues; the space and timescale of the transfer process and the closure for the magnitude of the eddy buoyancy flux.
+
+\section*{a. Testing the transfer timescale}
+
+Figure 14 shows the development of the cumulative eddy heat flux in one particular experiment-as time goes by the eddies become more and more important. We estimate from the model the time \(\tau_{\text {model }}\) at which lateral transfer by eddies has become significant. We then compare this to \(\tau_{\text {transfer }}\), Eq. (26), for each of the 14 experiments shown in Table 1.
+
+The first step is to relate \(\tau_{\text {transfer }}\) to external parameters, which are controlled in the experiments. Using (22), Eq. (26) can be written:
+\[
+\tau_{\text {transfer }}=\frac{L_{\text {zone }} f}{h M^{2}} .
+\]
+
+To express \(M^{2}\) in terms of external parameters we assume that
+1) the mixed layer smoothly connects with the thermocline below,
+\[
+M^{2}=\left|h_{y}\right| N_{\mathrm{th}}^{2},
+\]
+and
+2) the 1D law of mixed layer deepening applies at the channel center [Eq. (5)].
+
+Hence,
+\[
+M^{2}=\left|\mathcal{B}_{y}\right| N_{\mathrm{th}} \sqrt{\frac{t}{2 \mathcal{B}}}
+\]
+
+Substituting for \(M^{2}\) in (28) using (30) and solving for the time we find
+\[
+\tau_{\text {transfer }}=2 \sqrt{\frac{\mathcal{B} f}{\mathcal{B}_{y}^{2}}}
+\]
+
+For the form of cooling chosen to drive our numerical experiments, Eq. (18), the above expression can be evaluated at midchannel and expressed as
+\[
+\tau_{\text {transfer }} f \propto \frac{L_{\text {zone }}}{l_{\text {rot }}},
+\]
+where \(l_{\text {rot }}=\sqrt{\mathcal{B} / f^{3}}=\mathrm{Ro}^{*} h\) is the rotational length scale formed from the external parameters \(\mathcal{B}\) and \(f\) eval-
+
+\begin{figure}
+\includegraphics[alt={},max width=\textwidth]{https://cdn.mathpix.com/cropped/127a3bf6-8762-4618-b99a-2cbe18b37b6a-17.jpg?height=1832&width=1424&top_left_y=285&top_left_x=373}
+\captionsetup{labelformat=empty}
+\caption{Fig. 11. Vertical sections from experiment 3 at day 9, half way along the channel ( \(x=25 \mathrm{~km}\) ). (a) Temperature (contour spacing \(0.02^{\circ} \mathrm{C}\) ), (b) Ertel potential vorticity normalized by the PV of the initial condition, and (c) tracer. Velocities are as in Fig. 5 [peak speeds are \((0.21,0.022) \mathrm{m} \mathrm{s}^{-1}\) in the \((y, z)\) directions].}
+\end{figure}
+uated at midchannel; this scale, the physical interpretation of which is discussed in Marshall et al. (1994), crops up in many problems in rotating convection.
+
+The instability timescale observed in the model measured against \(f, \tau_{\text {model }} f\), is plotted in Fig. 15 against \(L_{\text {zone }} / l_{\text {rot }}\), Eq. (32), for 14 experiments in which the external
+forcing, rotation rate, initial stratification, and domain size were all varied (Table 1). We see that, indeed, the scaling law for \(\tau_{\text {transfer }} f\) is a good prediction for the timescale deduced from the model \(\tau_{\text {model }} f\). The numerical results also confirm that the transfer timescale is independent of the ambient stratification and the domain
+
+\begin{figure}
+\includegraphics[alt={},max width=\textwidth]{https://cdn.mathpix.com/cropped/127a3bf6-8762-4618-b99a-2cbe18b37b6a-18.jpg?height=1299&width=1131&top_left_y=296&top_left_x=504}
+\captionsetup{labelformat=empty}
+\caption{FIG. 12. Three-dimensional switch-off experiment. As Fig. 10 but at day 10, 24 h after the surface cooling has ceased. Both PV and \(N^{2}\) are now nonnegative.}
+\end{figure}
+size. For example, experiments 6 and 8 were performed with initial stratifications that varied by a factor of 4 , yet showed only an \(11 \%\) change in the transfer timescale; experiments 3 and 16 were identical except that experiment 16 was carried out in a channel twice as wide, and the difference in transfer timescales was only 2\% (see Table 1).
+
+If, instead, we had chosen a transfer scale of \(L_{\rho}\) then, replacing \(L_{\text {zone }}\) by \(L_{\rho}\) in Eq. (28), we find that the transfer timescale varies as \(\left(L_{\text {zone }} / L_{\text {rot }}\right)^{2 / 3}\). The implied curve is also shown in Fig. 15 and is clearly less successful at explaining the data than Eq. (32) assuming \(L_{\text {zone }}\) is the transfer scale. It appears, then, that the appropriate transfer scale is set by the width of the baroclinic zone, rather than the instability scale.
+b. The magnitude of the lateral fluxes-Finding the constant \(c_{e}\)
+Next we consider the magnitude of the eddy buoyancy flux driven by baroclinic eddies observed in our suite
+of numerical experiments (Table 1) and the ability of the simple ideas outlined above to predict it. We focus on the cumulative eddy transfer of heat as a function of time, \(E(t)\), plotted in Fig. 14. We suppose that \(E(t)\) is due entirely to eddies since the plume convection/ symmetric instability is suppressed by the eddies (Fig. 8). For each integration we estimate \(c_{e}\) by finding the value that gives the best fit to the time evolution of the model using Eq. (25) to specify the value of \(K\), evaluated at \(t=\tau_{\text {model }}\). For example, the dashed line in Fig. 14 shows the result for experiment 1 . The magnitude of \(c_{e}\) from all 14 experiments was \(0.0817 \pm 0.023\). We also allowed the \(K\) to vary with time, changing it in proportion to the observed speed of the thermal wind in the mixed layer as suggested by (25) according to (22). There is some change-in this case \(c_{e}=0.119 \pm\) 0.031 -since the majority of the eddy flux occurs when the eddies are mature.
+
+We discuss the implication of our results for the parameterization of eddy fluxes (and place them in the context of other work on this subject) in section 5.
+
+\begin{figure}
+\includegraphics[alt={},max width=\textwidth]{https://cdn.mathpix.com/cropped/127a3bf6-8762-4618-b99a-2cbe18b37b6a-19.jpg?height=1817&width=1423&top_left_y=283&top_left_x=371}
+\captionsetup{labelformat=empty}
+\caption{FIG. 13. Sections of zonal mean Ertel potential vorticity (normalized by initial PV value) at days 3, 6, and 9 of experiment 3. The thick dashed line in each plot is the prediction of the one-dimensional law for the depth of the mixed layer [Eq. (5)].}
+\end{figure}
+
+\section*{5. Discussion}
+a. Implications for the oceanic mixed layer
+
+How do our results apply to the mixed layer in a general context? Here we address the issues of how they
+may be modified in the presence of other processes, and estimate their quantitative significance.
+
+Theory (section 2) suggests that a mixed layer with spatial density gradients ought to convect along sloping paths. This symmetric instability rapidly generates a layer with vanishing potential vorticity ( \(\mathrm{Ri}=1\) ), but non-
+
+\begin{figure}
+\includegraphics[alt={},max width=\textwidth]{https://cdn.mathpix.com/cropped/127a3bf6-8762-4618-b99a-2cbe18b37b6a-20.jpg?height=789&width=757&top_left_y=292&top_left_x=270}
+\captionsetup{labelformat=empty}
+\caption{FIG. 14. Evolution of terms in the heat budget for the southern half of the channel in experiment 3 . The circles show the evolution of the observed heat loss-it increases with time due to the surface cooling (shown by the dashed line) and eddy heat transfer to the north. The full line shows the prediction of the eddy parameterization scheme as explained in the text, where \(c_{e}=0.0827\).}
+\end{figure}
+zero vertical stratification. Thereafter, a nonhydrostatic baroclinic instability develops that provides a lateral and vertical buoyancy flux that becomes the dominant mode of buoyancy transfer. The fully nonlinear numerical experiments are in general support, and indicate that the PV of the surface-forced layer is reset to zero on a timescale of a few hours, with pronounced stratification in the overturning fluid. Baroclinic eddies subsequently develop, and we suggest scaling laws for the magnitude of the buoyancy transfer, that found support in the numerical model.
+
+The model does not, of course, attempt to include all the processes at work in the upper ocean, however. There are processes other than spatial gradients in the buoyancy forcing or stratification that cause lateral density gradients in the mixed layer. The real ocean develops surface frontal regions from larger-scale strain (due to instability of the main thermocline for example) and outcropping of density surfaces. Lateral contrasts in mechanical forcing that result from isolated atmospheric disturbances and remotely produced waves can also be important. These include mixing due to breaking surface waves generated by the wind, inertial waves, and Langmuir turbulence. Upwelling at a coastal boundary is another important source of nearshore fronts.
+
+For the purpose of simplicity, and to facilitate understanding, we have not attempted to represent these processes in our model. They may modify or disrupt the thermal wind that is ultimately set up in the mixed layer. But it is reasonable to suppose that deep mixed
+
+\begin{figure}
+\includegraphics[alt={},max width=\textwidth]{https://cdn.mathpix.com/cropped/127a3bf6-8762-4618-b99a-2cbe18b37b6a-20.jpg?height=748&width=770&top_left_y=292&top_left_x=1100}
+\captionsetup{labelformat=empty}
+\caption{Fig. 15. Regression of normalized transfer timescale measured from the model versus \(L_{\text {zone }} / l_{\text {rot }}\). Each symbol is the result of a different experiment from Table 1 (experiments \(3-16\) ). The full line has a gradient of unity, corresponding to the scaling law given by Eq. (25)-where the transfer scale is the width of the baroclinic zone. The dashed line has a gradient of \(2 / 3\), corresponding to the case in which the transfer scale is the deformation radius. The \(\tau\) model is defined to be the time at which the cumulative heat lost from the southern half of the channel is twice the cumulative heat lost from the surface (Fig. 14).}
+\end{figure}
+layers in which lateral gradients persist for several rotation periods will come close to a balanced state. Indeed, one of the key findings of our study is that currents in thermal wind balance in the mixed layer, averaged over a few kilometers and days, do persist despite strong surface forcing. The consequence is a vigorous baroclinic instability. Eddies develop over several dayssomewhat slower than the timescale for convection/ symmetric instability—and efficiently redistribute buoyancy within the mixed layer.
+
+What is the significance of the mixed layer baroclinic instability for the real ocean? We will use our parameterization derived in section 4 and calibrated against our numerical calculations, to make inferences from observations of sea surface density about the magnitude of the transfer coefficient \(K\). Combining (25) and (22), we obtain
+\[
+K=c_{e} L_{\text {zone }}\left|\overline{b_{y}}\right| h / f=c_{e} \frac{g L_{\text {zone }}\left|\overline{\sigma_{y}}\right| h}{\rho_{0} f},
+\]
+with \(c_{e}\) set equal to 0.1 .
+It is unclear what \(L_{\text {zone }}\) should be, but let us assume a conservatively low estimate of 20 km based on the FASINEX survey (Pollard and Regier 1992). We can now use estimates of \(\overline{\sigma_{y}}\) from observations of sea surface density made on a \(10000-\mathrm{km}\) cruise track in the northeast Atlantic during April and May 1991 shown in Fig. 16a. These data were taken with a thermosali-
+
+\begin{figure}
+\includegraphics[alt={},max width=\textwidth]{https://cdn.mathpix.com/cropped/127a3bf6-8762-4618-b99a-2cbe18b37b6a-21.jpg?height=1840&width=1238&top_left_y=285&top_left_x=466}
+\captionsetup{labelformat=empty}
+\caption{Fig. 16. (a) Sea surface density ( \(\mathrm{kg} \mathrm{m}^{-3}\) ) measured every 250 m along a cruise track in the northeast Atlantic in April and May 1991. The cruise involved six north-south legs between \(42^{\circ}\) and \(54^{\circ} \mathrm{N}\) from the European continental slope to the Mid-Atlantic Ridge (Cunningham et al. 1992). Mixed layer depths ranged from around 50 m to a few 100 m (Fig. 2 shows the upper oceanic structure from the first 300 km of the cruise track). Seawater was drawn on board from a depth of 6 m and analyzed using a thermosalinograph then averaged to give a sea surface density value every 250 m . (b) Distribution of sea surface density gradients ( \(\mathrm{kg} \mathrm{m}^{-4}\) ). The data in (a) have been smoothed using a low-pass filter with wavelength 5 km . (c) Distribution of transfer coefficients ( \(\mathrm{m}^{2} \mathrm{~s}^{-1}\) ) calculated from Eq. (33) using the density gradient distribution from (b). Four mixed layer depths \(h\) have been assumed (50, 100, 200, and \(400 \mathrm{~m})\). Also shown is a constant transfer coefficient of \(250 \mathrm{~m}^{2} \mathrm{~s}^{-1}\) typical of the values used in oceanic general circulation models.}
+\end{figure}
+nograph, giving an average measurement every 250 m along the cruise track. Before computing the gradient, the dataset was smoothed with a low-pass filter, cutting off signals shorter than 5 km . The gradient was binned and its distribution is shown in Fig. 16b. The mixed layer depth varied between several tens of meters and a few hundreds (for example, the data in Fig. 2, from the first part of the cruise, shows depths of 200-400 m ), so we compare results for four characteristic depths \((50,100,200\), and 400 m\()\).
+
+Figure 16c shows the estimate of transfer coefficient due to mixed layer baroclinic instability. We plot the distribution of \(K\) corresponding to each range of \(\overline{\sigma_{y}}\) for the four mixed layer depth choices. Typically the transfer coefficients are in the range from 100 to \(1000 \mathrm{~m}^{2} \mathrm{s}^{-1}\) and are largest for deep mixed layers and strong fronts. [Typical values of eddy diffusivity used in eddyresolving basin models are \(O\left(100 \mathrm{~m}^{2} \mathrm{~s}^{-1}\right)\).] It is clear that a constant \(K\) (constant Fickian diffusion-commonly used in oceanic general circulation models) poorly represents the eddy transfer process; the coefficient estimated using (33) varies by three orders of magnitude for a given depth. We have repeated these estimates using a \(1-\mathrm{km}\) low-pass filter and find that the transfer coefficients are increased by a factor of 10 in this case.
+
+Our calculations here (and elsewhere-see, e.g., Jones and Marshall 1993; Visbeck et al. 1996) clearly show that lateral transfer by mixed layer baroclinic eddies is important on the margins of deep convection chimneys. But our calculations also suggest that they may be important in less extreme mixing regimes such as frontal regions associated with \(O(100 \mathrm{~m})\) deep mixed layers. It is reasonable to speculate that baroclinic instability of the mixed layer is commonplace and provides a significant and efficient mechanism of lateral and vertical buoyancy transport through them. The seasonal cycle modulates the process leading to greatest power when there is deepest mixing. As such, it will be most significant when the ocean interior receives water fresh from atmospheric contact and so will be responsible, in part, for determining the character of newly formed thermocline water.
+
+\section*{b. Implications for eddy parameterizations}
+
+Green (1970) and Larichev and Held (1996) suggest the following closure for the eddy transfer coefficent:
+\[
+K_{G}=c_{G} \frac{\mu^{2}}{\tau_{\text {Eady }}},
+\]
+where \(\tau_{\text {Eady }}=\sqrt{\mathrm{Ri} / f}=L_{\rho} / u\) is a measure of the instability timescale [Eq. (15)] and \(\mu\) is the transfer scale. Green chose \(\mu=L_{\text {zone }}\), the width of the baroclinic zone. Instead, Stone (1972) supposed that
+\[
+K_{s}=c_{S} u \mu
+\]
+as in (25), arguing that \(u\) should be given by (22) and setting \(\mu=L_{\rho}\), the deformation radius.
+
+The forms (34) and (35) should be compared to \(K= c_{e} L_{\text {zone }} u\), Eq. (25), the form that best fits the data here. It is straightforward to show
+\[
+c_{e}=c_{s} \sqrt{B u}=c_{G} / \sqrt{B u}
+\]
+where \(c_{S}\) and \(c_{G}\) are the empirical constants used in the Stone and Green theories. The average Burger number for the experiments performed here is 0.063 , so the \(c_{e} \approx 0.1\) found in the present study implies \(c_{s}=0.42\) and \(c_{G}=0.025\). These are in acceptable agreement with Stone's (1972) estimate of 0.86 and the Visbeck et al. (1996) value for \(c_{G}\) of 0.015 . Clearly, one can only distinguish between these closure theories by varying the Burger number, as we have done here. We find that (25), the simplest of the three, gives the best fit to the data.
+
+In contrast to the problem we have addressed in this paper, several recent studies on parameterizing baroclinic eddy fluxes have focused on two-layer quasigeostrophic models (Pavan and Held 1996; Larichev and Held 1995; Held and Larichev 1996; Vallis 1988). Larichev and Held (1995) find support for Green’s scaling in statistically steady models of homogeneous turbulence, while Held and Larichev (1996) confirm that the closure still applies on a beta plane, provided the Rhines (1975) length scale is used for \(\mu\) in Eq. (34). Our model differs from these studies in two important respects: First, we solve the nonhydrostatic Navier-Stokes equations for flows that are not quasigeostrophic (clearly evident from the large vertical isotherm excursions in Fig. 11). Second, there is no statistical steady state and our eddy field is inhomogeneous due to the shape of the imposed forcing function. Despite these limitations we are encouraged by the success of the scaling we propose. However, we consider it provisional and it must be tested against statistically steady, homogeneous simulations of baroclinic instability.
+
+Acknowledgments. We thank Martin Visbeck for his helpful and enthusiastic remarks and the comments of two anonymous referees. The datasets were taken from the United Kingdom's Vivaldi '91 cruise. TWNH and JCM were supported by grants from the ACCP program of NOAA (NA46GP0125) and Grant (OCE-9503895) of NSF.
+
+\section*{APPENDIX A}
+
+\section*{Parcel Theory of Gravitational Instability}
+
+Suppose that a weakly stratified ocean is subject to vigorous cooling at the surface over some hundreds of kilometers, producing a density inversion and the possibility of overturning. The fluid cannot simultaneously overturn on this scale; rather, the qualitative response to widespread cooling is one in which relatively small convection cells (plumes) develop. The detailed physics setting the plume scale is as yet unclear, but clearly the
+gross transfer properties of the population of convective cells must be controlled by the large scale; the vertical buoyancy flux due to convection must offset loss at the surface. A law of vertical buoyancy transfer for the plume scale and its instability timescale can be developed using parcel theory as follows.
+
+Suppose that the net effect of overturning is to exchange particles of fluid, of density \(\rho_{1}\) and \(\rho_{2}\), over a depth \(\Delta z\). Dense water sinks displacing lighter water below, and releases potential energy to power the plume and flux buoyancy vertically. The change in potential energy \(\Delta P\) consequent on this idealized rearrangement of particles (Fig. 1a) is given by
+\[
+\begin{aligned}
+\Delta P & =P_{\text {final }}-P_{\text {initial }} \\
+& =g\left[\left(\rho_{1} z_{2}+\rho_{2} z_{1}\right)-\left(\rho_{1} z_{1}+\rho_{2} z_{2}\right)\right] \\
+& =\rho_{0} \Delta b \Delta z,
+\end{aligned}
+\]
+where \(\Delta b=\left(b_{2}-b_{1}\right)\) is the buoyancy difference of the particles exchanged over a distance \(\Delta z=\left(z_{2}-z_{1}\right)\), \(g\) is the acceleration due to gravity, and \(\rho_{0}\) is a representative value of the density.
+
+Equating the released potential energy to the acquired kinetic energy of the ensuing convective motion, \(\Delta K= 2 \times(1 / 2) \rho_{0} w^{2}\) (where \(w\) is the vertical velocity scale and there is a factor of 2 because there are two particles), then
+\[
+w^{2}=\Delta b \Delta z .
+\]
+
+Now, if heavy fluid lies above light fluid, an unstable disturbance with growth rate \(\omega\) will develop. Thus, setting \(z \propto e^{\omega t} ; d / d t=\omega ; w=d z / d t=\omega z\), then (A2) implies
+\[
+\omega^{2} Z^{2}=\left|N^{2}\right| Z^{2},
+\]
+so
+\[
+\omega^{2}=\left|N^{2}\right|,
+\]
+which is the result given by linear stability analysis [in the inviscid limit, the lateral scale of the fastest growing convective mode collapses to zero, no energy is involved in lateral motion, and the limit (A3) is achieved].
+
+The implied vertical buoyancy flux on the plume scale is then, using (A2),
+\[
+\mathcal{B}_{p}=w \Delta b=\Delta z^{1 / 2} \Delta b^{3 / 2}
+\]
+which is Eq. (4).
+
+\section*{APPENDIX B}
+
+\section*{Energy Analysis of the Thermal Wind}
+
+We now consider parcels of incompressible fluid at positions ( \(y_{1}, z_{1}\) ) and ( \(y_{2}, z_{2}\) ) in thermal wind balance with a meridional density gradient. The parcels are then interchanged adiabatically (i.e., with conservation of buoyancy).
+
+\section*{a. Potential energy}
+
+The change in potential energy (per unit volume) is again (A1):
+\[
+\Delta P=\rho_{o}\left(z_{2}-z_{1}\right)\left(b_{2}-b_{1}\right) .
+\]
+
+We also have
+\[
+\Delta b=\frac{\partial b}{\partial y} \Delta y+\frac{\partial b}{\partial z} \Delta z
+\]
+so that
+\[
+\left(b_{2}-b_{1}\right)=M^{2}\left(y_{2}-y_{1}\right)+N^{2}\left(z_{2}-z_{1}\right)
+\]
+if, for simplicity, \(N^{2}\) and \(M^{2}\) are assumed constant and measure the strength of the vertical and horizontal density gradients, respectively.
+
+The slope \(s_{b}\) of a buoyancy surface is, setting \(b_{2}= b_{1}\),
+\[
+s_{b}=\frac{d y}{d z}=-\frac{M^{2}}{N^{2}} .
+\]
+
+Hence, if \(s=\left(z_{2}-z_{1}\right) /\left(y_{2}-y_{1}\right)\) is the slope of the surface along which the particles are interchanged, we may write
+\[
+b_{2}-b_{1}=N^{2}\left(y_{2}-y_{1}\right)\left(s-s_{b}\right),
+\]
+so (B1) becomes
+\[
+\Delta P=\rho_{0} N^{2} \Delta y^{2} s\left(s-s_{b}\right) .
+\]
+
+In convectively stable conditions \(N^{2}>0\). Hence, the sign of \(\Delta P\) is the same as that of the factor \(s\left(s-s_{b}\right)\) and it will be negative, corresponding to the possibility of instability, if \(s<s_{b}\), that is, if the slope of the exchange surface has a smaller slope than that of the isopycnals.
+
+\section*{b. Kinetic energy}
+
+We must now consider the change in kinetic energy involved in exchanging fluid parcels. Let us assume a zonal motion \(u=u(y, z)\) of zonal tubes of fluid independent of \(x\) (rather than just parcels) so that zonal momentum cannot be changed by pressure gradient forces. Then we have
+\[
+\frac{D m}{D t}=0,
+\]
+where \(m=u-f y\) is the absolute momentum. For any small displacement in the \(y\) direction we must have
+\[
+\Delta u=f \Delta y
+\]
+as the change following the motion.
+Now consider the change in kinetic energy resulting from the exchange of tubes of fluid with zonal motion \(u_{1}\) at ( \(y_{1}, z_{1}\) ) and \(u_{2}\) at ( \(y_{2}, z_{2}\) ). Then
+\[
+\begin{aligned}
+\Delta K= & \frac{1}{2} \rho_{0}\left[\left\{u_{1}+f\left(y_{2}-y_{1}\right)\right\}^{2}\right. \\
+& \left.\quad+\left\{u_{2}-f\left(y_{2}-y_{1}\right)\right\}^{2}-u_{1}^{2}-u_{2}^{2}\right] \\
+= & \rho_{0}\left(y_{2}-y_{1}\right)^{2} f\left[f-\frac{\left(u_{2}-u_{1}\right)}{\left(y_{2}-y_{1}\right)}\right] .
+\end{aligned}
+\]
+
+Since
+\[
+\left(u_{2}-u_{1}\right)=\frac{\partial u}{\partial y}\left(y_{2}-y_{1}\right)+\frac{\partial u}{\partial z}\left(z_{2}-z_{1}\right),
+\]
+this may be written
+\[
+\Delta K=\rho_{0}\left(y_{2}-y_{1}\right)^{2} f\left(f-\frac{\partial u}{\partial y}-s \frac{\partial u}{\partial z}\right),
+\]
+or, since \(f \partial u / \partial z=-M^{2}=N^{2} s_{b}\), then
+\[
+\Delta K=\rho_{0} \Delta y^{2}\left[f\left(f-\frac{\partial u}{\partial y}\right)-N^{2} s s_{b}\right] .
+\]
+
+Hence the change in total energy of the mean motion, \(\overline{\Delta E}\), is, adding (B3) to (B2) and rearranging,
+\[
+\overline{\Delta E}=\rho_{0} \Delta y^{2} f\left(f-\frac{\partial u}{\partial y}\right)-\frac{f^{2}\left(\frac{\partial u}{\partial z}\right)^{2}}{N^{2}}+N^{2}\left(s-s_{b}\right)^{2} .
+\]
+
+\section*{c. Symmetric instability}
+
+Regarding \(s\), the direction of exchange, as a variable, \(\overline{\Delta E}\) has a minimum when \(s=s_{b}\), that is, when the exchange is in the initial isopycnal surface. Then
+\[
+(\overline{\Delta E})_{\min }=\rho_{0} \Delta y^{2} f^{2}\left(\frac{\zeta}{f}-\frac{1}{\mathrm{Ri}}\right)
+\]
+will be negative if
+\[
+\operatorname{Ri}<\frac{f}{\zeta},
+\]
+corresponding to negative Ertel potential vorticity and the possibility of instability. Here \(\zeta=f-\partial u / \partial y\) is the vertical component of absolute vorticity and
+\[
+\operatorname{Ri}=\frac{f^{2} N^{2}}{M^{4}}
+\]
+is the Richardson number.
+From (B4) we may again deduce the growth rate:
+\[
+\omega^{2}=-f^{2}\left(\frac{\zeta}{f}-\frac{1}{\mathrm{Ri}}\right) .
+\]
+
+\section*{d. Baroclinic instability}
+
+If the Richardson number of the mean flow is large, then only changes in its potential energy (B2) need be taken into account. For a given exchange distance, ( \(y_{2} -y_{1}\) ), the release of potential energy will be a maximum ( \(-\Delta P\) a maximum) when \(s\left(s-s_{b}\right)\) is a maximum; in other words, when
+\[
+s=\frac{s_{b}}{2},
+\]
+then
+\[
+\begin{aligned}
+(\Delta P)_{\min } & =-\frac{1}{4} \rho_{0} N^{2} \Delta y^{2} s_{b}^{2} \\
+& =-\frac{1}{4} \rho_{0} \Delta y^{2} \frac{f^{2}}{\mathrm{Ri}}
+\end{aligned}
+\]
+
+We see that in any region where a thermal wind exists it is always possible to release potential energy for eddy growth provided an appropriate rearrangement of particles takes place.
+
+If an unstable disturbance grows, then \(y \propto e^{\omega t} ; d / d t =\omega ; \boldsymbol{v}=d y / d t=\omega y\). Equating released potential energy to acquired kinetic energy of the eddying motion ( \(\rho_{0} \boldsymbol{v}^{2}\) ) we find, in direct analogy with the upright convection problem outlined above,
+\[
+\omega^{2} \approx \frac{f^{2}}{\mathrm{Ri}},
+\]
+which is a heuristic derivation of the growth rate of an Eady wave. Equation (B8) is in effect just (A3) but with the \(\left|N^{2}\right|\) measured along a slope that has one-half that of the isopycnals. Parcel theory has led us to the same result one derives from linear stability analysis.
+
+\section*{REFERENCES}
+
+Barth, J. A., 1994: Short-wavelength instabilities on coastal jets and fronts. J. Geophys. Res., 99, 16095-16115.
+Chandrasekar, S., 1961: Hydrodynamic and Hydromagnetic Stability. Dover, 652 pp.
+Cunningham, S. A., and Coauthors, 1992: SeaSoar CTD, fluorescence and scalar irradiance data from RRS Charles Darwin cruises 58/59, NE Atlantic (Vivaldi 91). IOSDL Rep. 299, 48 pp. [Available from Library, SOC, Empress Dock, Southampton SO14 3ZH, United Kingdom.]
+Eady, E. T., 1949: Long waves and cyclone waves. Tellus, 1, 33-52.
+-, 1951: The quantitative theory of cyclone development. Compendium of Meteorology, T. F. Malone, Ed., Amer. Meteor. Soc., 464-469.
+Emanuel, K., 1994: Atmospheric Convection. Oxford University Press, 580 pp .
+Fukamachi, Y., J. P. McCreary, and J. A. Proehl, 1995: Instability of density fronts in layer and continuously stratified models. \(J\). Geophys. Res., 100, 2559-2577.
+Green, J. A., 1970: Transfer properties of the large-scale eddies and the general circulation of the atmosphere. Quart. J. Roy. Meteor. Soc., 96, 157-185.
+Held, I. M., and V. D. Larichev, 1996: A scaling theory for horizontally homogeneous baroclinically unstable flow on a beta plane. J. Atmos. Sci., 53, 946-952.
+
+Hoskins, B. J., 1974: The role of potential vorticity in symmetric stability and instability. Quart. J. Roy. Meteor. Soc., 100, 480482.
+
+Jones, H., and J. C. Marshall, 1993: Convection with rotation in a neutral ocean: A study of open-ocean deep convection. J. Phys. Oceanogr., 23, 1009-1039.
+Kraus, E. B., and J. S. Turner, 1967: A one-dimensional model of the seasonal thermocline. II The general theory and its consequences. Tellus, 19, 98-105.
+Larichev, V. D., and I. M. Held, 1995: Eddy amplitudes and fluxes in a homogeneous model of fully developed baroclinic instability. J. Phys. Oceanogr., 25, 2285-2297.
+Lin, S.-J., and R. T. Pierrehumbert, 1988: Does Ekman friction suppress baroclinic instability? J. Atmos. Sci., 45, 2920-2933.
+Marshall, J. C., J. Whitehead, and T. Yates, 1994: Laboratory and numerical experiments in oceanic convection. Ocean Processes in Climate Dynamics, P. Malanotte-Rizzoli and A. Robinson, Eds., Kluwer Academic Press, 437 pp.
+-, C. N. Hill, L. Perelman, and A. Adcroft, 1997a: Hydrostatic, quasi-hydrostatic and non-hydrostatic ocean modeling. J. Geophys. Res., 102, 5733-5752.
+-, A. Adcroft, C. N. Hill, L. Perelman, and C. Heisey, 1997b: A finite-volume, incompressible Navier Stokes model for studies of the ocean on parallel computers. J. Geophys. Res., 102, 57535766.
+
+Mellor, G. L., and T. Yamada, 1974: A hierarchy of turbulence closure models for planetary boundary layers. J. Atmos. Sci., 31, 17911806.
+
+Pavan, V., and I. M. Held, 1996: The diffusive approximation for eddy fluxes in baroclinically unstable jets. J. Atmos. Sci., 53, 1262-1272.
+Pollard, R. T., 1986: Frontal surveys with a towed profiling conductivity/temperature/depth measurement package (SeaSoar). Nature, 323, 433-435.
+-, and L. A. Regier, 1992: Vorticity and vertical circulation at an ocean front. J. Phys. Oceanogr., 22, 609-625.
+-, P. B. Rhines, and R. O. R. Y. Thompson, 1973: The deepening of the wind-mixed layer. Geophys. Fluid. Dyn., 3, 381-404.
+Price, J. F., R. A. Weller, and R. Pinkel, 1986: Diurnal cycling: Observations and models of the upper ocean response to diurnal heating, cooling and wind mixing. J. Geophys. Res., 91, 84118427.
+
+Rayleigh, O. M., 1916: On convection currents in a horizontal layer of fluid, when the higher temperature is on the lower side. Philos. Mag. Ser. 6, 32, 529-546.
+Rhines, P. B., 1975: Waves and turbulence on a beta-plane. J. Fluid Mech., 69, 417-443.
+Samelson, R. M., and C. A. Paulson, 1988: Towed thermistor chain observations of fronts in the subtropical north Pacific. J. Geophys. Res., 93, 2237-2246.
+Stone, P. H., 1971: Baroclinic instability under non-hydrostatic conditions. J. Fluid Mech., 45, 659-671.
+-, 1972: A simplified radiative-dynamical model for the static stability of rotating atmospheres. J. Atmos., Sci., 29, 405-418.
+-, 1978: Baroclinic adjustment. J. Atmos., Sci., 35, 561-571.
+Turner J. S., 1973: Buoyancy Effects in Fluids. Cambridge University Press, 368 pp.
+Vallis, G. K., 1988: Numerical studies of eddy transport properties in eddy-resolving and parametrized models. Quart. J. Roy. Meteor. Soc., 114, 183-204.
+Veronis G., 1958: Cellular convection with finite-amplitude in a rotating fluid. J. Fluid Mech., 5, 410-435.
+Visbeck, M., J. C. Marshall, and H. Jones, 1996: On the dynamics of convective "chimneys" in the ocean. J. Phys. Oceanogr., 26, 1721-1734.
+Young, W. R., and L. Chen, 1995: Baroclinic instability and thermohaline gradient alignment in the mixed layer. J. Phys. Oceanogr., 25, 3172-3185.
